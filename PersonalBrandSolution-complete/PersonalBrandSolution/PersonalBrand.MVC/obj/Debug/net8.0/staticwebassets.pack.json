@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PersonalBrand.MVC.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.PersonalBrand.MVC.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.PersonalBrand.MVC.props",
+      "PackagePath": "build\\PersonalBrand.MVC.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.PersonalBrand.MVC.props",
+      "PackagePath": "buildMultiTargeting\\PersonalBrand.MVC.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.PersonalBrand.MVC.props",
+      "PackagePath": "buildTransitive\\PersonalBrand.MVC.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

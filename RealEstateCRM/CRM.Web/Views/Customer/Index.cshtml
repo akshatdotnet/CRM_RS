@@ -1,0 +1,74 @@
+@model CustomerListViewModel
+@{ ViewData["Title"] = "Customers"; ViewData["Breadcrumb"] = "Customers"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 fw-semibold">Customers</h4>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="metric-card">
+            <div class="metric-label">Total Customers</div>
+            <div class="metric-value text-success">@Model.TotalCount</div>
+            <small class="text-muted">Closed deals</small>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="metric-card">
+            <div class="metric-label">Total Revenue</div>
+            <div class="metric-value text-primary" style="font-size:20px;">₹@((Model.TotalRevenue/10000000).ToString("N2")) Cr</div>
+            <small class="text-muted">All time</small>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="metric-card">
+            <div class="metric-label">Avg Deal Value</div>
+            <div class="metric-value" style="color:#534AB7;font-size:20px;">
+                ₹@(Model.TotalCount > 0 ? ((Model.TotalRevenue / Model.TotalCount) / 100000).ToString("N1") : "0")L
+            </div>
+            <small class="text-muted">Per closed deal</small>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Customer</th><th>Property Purchased</th><th>Deal Value</th><th>Closed On</th><th>Agent</th><th>Source</th><th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model.Customers)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="avatar-circle" style="background:#E1F5EE;color:#0F6E56;width:32px;height:32px;font-size:12px;">
+                                        @(c.FullName.Split(' ').Take(2).Select(n=>n[0]).Aggregate("",(a,b)=>a+b))
+                                    </div>
+                                    <div>
+                                        <div class="fw-medium">@c.FullName</div>
+                                        <small class="text-muted">@c.Phone</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><small>@c.PropertyPurchased</small></td>
+                            <td><strong>₹@((c.DealValue/100000).ToString("N1"))L</strong></td>
+                            <td><small>@c.DealClosedDate.ToString("MMM dd, yyyy")</small></td>
+                            <td><small>@c.AgentName</small></td>
+                            <td><small class="text-muted">@c.Source</small></td>
+                            <td><a asp-action="Details" asp-route-id="@c.Id" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a></td>
+                        </tr>
+                    }
+                    @if (!Model.Customers.Any())
+                    {
+                        <tr><td colspan="7" class="text-center text-muted py-4">No customers yet. Close a lead to create a customer.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

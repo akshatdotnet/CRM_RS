@@ -1,0 +1,228 @@
+{
+  "Version": 1,
+  "Hash": "sBPKK72KRQm2SxWKhV5ViswkH4yKHpJApUoTIJPbHIM=",
+  "Source": "PersonalBrand.MVC",
+  "BasePath": "_content/PersonalBrand.MVC",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "PersonalBrand.MVC\\wwwroot",
+      "Source": "PersonalBrand.MVC",
+      "ContentRoot": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
+      "BasePath": "_content/PersonalBrand.MVC",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
+      "SourceId": "PersonalBrand.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
+      "BasePath": "_content/PersonalBrand.MVC",
+      "RelativePath": "css/site#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fe4erlr7bl",
+      "Integrity": "OROZeyqEbMf7/6xoAdnqITYiEuQ6a9f6BR4tP//XlGc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
+      "SourceId": "PersonalBrand.MVC",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
+      "BasePath": "_content/PersonalBrand.MVC",
+      "RelativePath": "js/site#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "0n4b6k6cvd",
+      "Integrity": "xB0xNEv9B1eQEKkX1C244myngnf3z6BHVdHzj5oWNL8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/site.css",
+      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "32019"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OROZeyqEbMf7/6xoAdnqITYiEuQ6a9f6BR4tP//XlGc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 11:45:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OROZeyqEbMf7/6xoAdnqITYiEuQ6a9f6BR4tP//XlGc="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.fe4erlr7bl.css",
+      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "32019"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OROZeyqEbMf7/6xoAdnqITYiEuQ6a9f6BR4tP//XlGc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 11:45:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fe4erlr7bl"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OROZeyqEbMf7/6xoAdnqITYiEuQ6a9f6BR4tP//XlGc="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.0n4b6k6cvd.js",
+      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15994"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xB0xNEv9B1eQEKkX1C244myngnf3z6BHVdHzj5oWNL8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 11:45:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0n4b6k6cvd"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-xB0xNEv9B1eQEKkX1C244myngnf3z6BHVdHzj5oWNL8="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.js",
+      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15994"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"xB0xNEv9B1eQEKkX1C244myngnf3z6BHVdHzj5oWNL8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 11:45:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-xB0xNEv9B1eQEKkX1C244myngnf3z6BHVdHzj5oWNL8="
+        }
+      ]
+    }
+  ]
+}

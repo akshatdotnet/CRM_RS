@@ -1,0 +1,17 @@
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\bin\Debug\net8.0\CRM.Infrastructure.deps.json
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\bin\Debug\net8.0\CRM.Infrastructure.runtimeconfig.json
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\bin\Debug\net8.0\CRM.Infrastructure.dll
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\bin\Debug\net8.0\CRM.Infrastructure.pdb
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\bin\Debug\net8.0\CRM.Core.dll
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\bin\Debug\net8.0\CRM.Core.pdb
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.csproj.AssemblyReference.cache
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.AssemblyInfoInputs.cache
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.AssemblyInfo.cs
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infr.2D6F64BC.Up2Date
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.dll
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\refint\CRM.Infrastructure.dll
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.pdb
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\CRM.Infrastructure.genruntimeconfig.cache
+D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Infrastructure\obj\Debug\net8.0\ref\CRM.Infrastructure.dll

@@ -1,0 +1,102 @@
+@model PropertyListViewModel
+@{ ViewData["Title"] = "Properties"; ViewData["Breadcrumb"] = "Properties"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 fw-semibold">Properties</h4>
+    <a asp-action="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>Add Property</a>
+</div>
+
+<!-- Stats row -->
+<div class="row g-3 mb-4">
+    <div class="col-md-2"><div class="metric-card"><div class="metric-label">Available</div><div class="metric-value text-success">@Model.TotalAvailable</div></div></div>
+    <div class="col-md-2"><div class="metric-card"><div class="metric-label">Sold</div><div class="metric-value text-primary">@Model.TotalSold</div></div></div>
+    <div class="col-md-2"><div class="metric-card"><div class="metric-label">On Hold</div><div class="metric-value" style="color:#BA7517;">@Model.TotalOnHold</div></div></div>
+    <div class="col-md-3">
+        <div class="metric-card" style="border-left:3px solid #BA7517;">
+            <div class="metric-label">New Enquiries</div>
+            <div class="metric-value" style="color:#BA7517;">@Model.PendingEnquiries</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-card" style="border-left:3px solid #185FA5;">
+            <div class="metric-label">Pending Confirmations</div>
+            <div class="metric-value text-primary">@Model.PendingConfirmations</div>
+        </div>
+    </div>
+</div>
+
+<!-- Filter bar -->
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-body py-2">
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+            <input type="text" class="form-control form-control-sm" style="max-width:200px;" placeholder="Search..." />
+            @foreach (var s in new[]{"Available","Hold","Sold"})
+            {
+                <a asp-action="Index" asp-route-status="@s"
+                   class="btn btn-sm @(Model.StatusFilter==s?"btn-primary":"btn-outline-secondary")">@s</a>
+            }
+            @if (!string.IsNullOrEmpty(Model.StatusFilter))
+            {
+                <a asp-action="Index" class="btn btn-sm btn-outline-danger">Clear</a>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Property cards grid -->
+<div class="row g-3">
+    @foreach (var p in Model.Properties)
+    {
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div style="height:180px;background:#f8f9fa;overflow:hidden;border-radius:12px 12px 0 0;position:relative;">
+                    @if (!string.IsNullOrEmpty(p.PrimaryPhotoPath))
+                    {
+                        <img src="@p.PrimaryPhotoPath" style="width:100%;height:100%;object-fit:cover;" alt="@p.Title" />
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center justify-content-center h-100 text-muted">
+                            <i class="bi bi-house-fill" style="font-size:40px;opacity:.3;"></i>
+                        </div>
+                    }
+                    <div style="position:absolute;top:10px;right:10px;">
+                        <span class="badge @(p.Status=="Available"?"bg-success":p.Status=="Hold"?"bg-warning text-dark":"bg-secondary")">@p.Status</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="fw-semibold mb-1" style="font-size:14px;">@p.Title</div>
+                    <div class="text-muted mb-1" style="font-size:12px;"><i class="bi bi-geo-alt me-1"></i>@p.Location, @p.City</div>
+                    <div class="fw-semibold text-primary mb-2">@p.PriceLabel</div>
+                    <div class="d-flex gap-3 text-muted mb-3" style="font-size:12px;">
+                        <span><i class="bi bi-house me-1"></i>@p.PropertyType</span>
+                        <span><i class="bi bi-door-open me-1"></i>@p.Bedrooms BHK</span>
+                        <span><i class="bi bi-arrows-angle-expand me-1"></i>@p.AreaSqFt sqft</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-sm btn-outline-primary flex-fill">View</a>
+                        <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-sm btn-outline-secondary">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="/p/@p.PublicSlug" target="_blank" class="btn btn-sm btn-outline-success" title="Public page">
+                            <i class="bi bi-box-arrow-up-right"></i>
+                        </a>
+                    </div>
+                </div>
+                @if (p.EnquiryCount > 0)
+                {
+                    <div class="card-footer border-0 py-1" style="font-size:11px;color:#BA7517;background:#FAEEDA;">
+                        <i class="bi bi-bell-fill me-1"></i>@p.EnquiryCount enquir@(p.EnquiryCount==1?"y":"ies")
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    @if (!Model.Properties.Any())
+    {
+        <div class="col-12 text-center text-muted py-5">
+            <i class="bi bi-house-x" style="font-size:40px;opacity:.3;"></i>
+            <p class="mt-2">No properties found. <a asp-action="Create">Add your first property</a></p>
+        </div>
+    }
+</div>

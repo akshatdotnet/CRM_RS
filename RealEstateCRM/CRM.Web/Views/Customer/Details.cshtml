@@ -1,0 +1,60 @@
+@using CRM.Core.Entities
+@model Customer
+@{ ViewData["Title"] = Model.FullName; ViewData["Breadcrumb"] = "Customer Details"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 fw-semibold">@Model.FullName</h4>
+    <a asp-action="Index" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-5">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex align-items-center gap-3 mb-4">
+                    <div class="avatar-circle" style="background:#E1F5EE;color:#0F6E56;width:52px;height:52px;font-size:18px;">
+                        @(Model.FullName.Split(' ').Take(2).Select(n=>n[0]).Aggregate("",(a,b)=>a+b))
+                    </div>
+                    <div>
+                        <div class="fw-semibold fs-5">@Model.FullName</div>
+                        <span class="badge-stage badge-Closed">Customer</span>
+                    </div>
+                </div>
+                <table class="w-100" style="font-size:13px;">
+                    <tr><td class="text-muted py-1" style="width:40%;">Phone</td><td class="py-1">@Model.Phone</td></tr>
+                    <tr><td class="text-muted py-1">Email</td><td class="py-1">@Model.Email</td></tr>
+                    <tr><td class="text-muted py-1">Property</td><td class="py-1">@Model.PropertyPurchased</td></tr>
+                    <tr><td class="text-muted py-1">Deal Value</td><td class="py-1 fw-semibold">₹@((Model.DealValue/100000).ToString("N1"))L</td></tr>
+                    <tr><td class="text-muted py-1">Closed On</td><td class="py-1">@Model.DealClosedDate.ToString("MMM dd, yyyy")</td></tr>
+                    <tr><td class="text-muted py-1">Source</td><td class="py-1">@Model.Source</td></tr>
+                    <tr><td class="text-muted py-1">Agent</td><td class="py-1">@(Model.Agent?.FullName ?? "—")</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <h6 class="fw-semibold mb-3">Lead Journey</h6>
+                @if (Model.Lead?.Activities != null && Model.Lead.Activities.Any())
+                {
+                    foreach (var a in Model.Lead.Activities.OrderBy(x => x.CreatedAt))
+                    {
+                        <div class="d-flex gap-2 mb-3">
+                            <div class="timeline-dot" style="background:#185FA5;margin-top:5px;"></div>
+                            <div>
+                                <div style="font-size:13px;font-weight:500;">@a.ActivityType</div>
+                                <div style="font-size:12px;color:#6c757d;">@a.Description</div>
+                                <div style="font-size:11px;color:#adb5bd;">@a.CreatedAt.ToString("MMM dd, yyyy")</div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted small">No activity history available.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

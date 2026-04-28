@@ -1,0 +1,412 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "RealEstate CRM API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Agents": {
+      "get": {
+        "tags": [
+          "Agents"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customers": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Customers/{id}": {
+      "get": {
+        "tags": [
+          "Customers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Dashboard/summary": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Leads": {
+      "get": {
+        "tags": [
+          "Leads"
+        ],
+        "parameters": [
+          {
+            "name": "stage",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Leads"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLeadDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLeadDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLeadDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Leads/{id}": {
+      "get": {
+        "tags": [
+          "Leads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Leads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLeadDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLeadDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLeadDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Leads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Leads/{id}/stage": {
+      "patch": {
+        "tags": [
+          "Leads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStageDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStageDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStageDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Leads/{id}/activities": {
+      "get": {
+        "tags": [
+          "Leads"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Leads/overdue": {
+      "get": {
+        "tags": [
+          "Leads"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CreateLeadDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "propertyType": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationPreference": {
+            "type": "string",
+            "nullable": true
+          },
+          "budgetMin": {
+            "type": "number",
+            "format": "double"
+          },
+          "budgetMax": {
+            "type": "number",
+            "format": "double"
+          },
+          "agentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "followUpDeadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "closeByDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateLeadDto": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "leadSource": {
+            "type": "string",
+            "nullable": true
+          },
+          "propertyType": {
+            "type": "string",
+            "nullable": true
+          },
+          "locationPreference": {
+            "type": "string",
+            "nullable": true
+          },
+          "budgetMin": {
+            "type": "number",
+            "format": "double"
+          },
+          "budgetMax": {
+            "type": "number",
+            "format": "double"
+          },
+          "stage": {
+            "type": "string",
+            "nullable": true
+          },
+          "agentId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "followUpDeadline": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "closeByDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateStageDto": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

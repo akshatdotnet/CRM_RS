@@ -1,0 +1,127 @@
+@model DashboardViewModel
+@{ ViewData["Title"] = "Dashboard"; ViewData["Breadcrumb"] = "Dashboard"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="mb-0 fw-semibold">Dashboard</h4>
+        <small class="text-muted">Real Estate CRM — Overview</small>
+    </div>
+    <a asp-controller="Lead" asp-action="Create" class="btn btn-primary btn-sm">
+        <i class="bi bi-plus-lg me-1"></i>New Lead
+    </a>
+</div>
+
+<!-- Metric Cards -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="metric-card">
+            <div class="metric-label">Total Leads</div>
+            <div class="metric-value text-primary">@Model.TotalLeads</div>
+            <small class="text-muted">Active in pipeline</small>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-card">
+            <div class="metric-label">Site Visits</div>
+            <div class="metric-value" style="color:#534AB7;">@Model.SiteVisits</div>
+            <small class="text-muted">Scheduled / completed</small>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-card">
+            <div class="metric-label">Closed Deals</div>
+            <div class="metric-value text-success">@Model.ClosedDeals</div>
+            <small class="text-muted">₹@((Model.TotalRevenue/100000).ToString("N1"))L revenue</small>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="metric-card">
+            <div class="metric-label">Conversion Rate</div>
+            <div class="metric-value" style="color:#854F0B;">@Model.ConversionRate%</div>
+            <small class="text-muted">Lead to close</small>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <!-- Pipeline Overview -->
+    <div class="col-md-7">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="fw-semibold mb-3">Pipeline Overview</h6>
+                @foreach (var s in Model.StageSummary)
+                {
+                    var pct = Model.TotalLeads > 0 ? (int)((double)s.Value / Model.TotalLeads * 100) : 0;
+                    var color = s.Key switch { "New" => "#185FA5", "Contacted" => "#BA7517", "Site Visit" => "#534AB7", "Negotiation" => "#639922", "Closed" => "#0F6E56", _ => "#A32D2D" };
+                    <div class="mb-2">
+                        <div class="d-flex justify-content-between mb-1">
+                            <span style="font-size:12px;">@s.Key</span>
+                            <span style="font-size:12px;color:#6c757d;">@s.Value leads</span>
+                        </div>
+                        <div class="progress" style="height:6px;border-radius:20px;">
+                            <div class="progress-bar" style="width:@pct%;background:@color;border-radius:20px;"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="col-md-5">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+                <h6 class="fw-semibold mb-3">Recent Activity</h6>
+                @if (!Model.RecentActivities.Any())
+                {
+                    <p class="text-muted small">No activities yet.</p>
+                }
+                @foreach (var a in Model.RecentActivities)
+                {
+                    <div class="d-flex gap-2 mb-3">
+                        <div>
+                            <div class="timeline-dot" style="background:@(a.ActivityType=="Stage Change"?"#185FA5":a.ActivityType=="Note"?"#639922":"#BA7517");margin-top:5px;"></div>
+                        </div>
+                        <div>
+                            <div style="font-size:13px;font-weight:500;">@a.LeadName</div>
+                            <div style="font-size:11px;color:#6c757d;">@a.Description</div>
+                            <div style="font-size:10px;color:#adb5bd;">@a.CreatedAt.ToString("MMM dd, hh:mm tt")</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Leads Table -->
+<div class="card border-0 shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="fw-semibold mb-0">Recent Leads</h6>
+            <a asp-controller="Lead" asp-action="Index" class="btn btn-outline-primary btn-sm">View All</a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th><th>Property</th><th>Stage</th><th>Follow-up</th><th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var l in Model.RecentLeads)
+                    {
+                        var dl = l.FollowUpDeadline < DateTime.Today ? "overdue" : l.FollowUpDeadline <= DateTime.Today.AddDays(3) ? "warn" : "ok";
+                        <tr>
+                            <td><span class="fw-medium">@l.FullName</span></td>
+                            <td><small class="text-muted">@l.PropertyType · @l.Location</small></td>
+                            <td><span class="badge-stage badge-@l.Stage.Replace(" ","-")">@l.Stage</span></td>
+                            <td><span class="deadline-@dl">@l.FollowUpDeadline.ToString("MMM dd")</span></td>
+                            <td><a asp-controller="Lead" asp-action="Details" asp-route-id="@l.Id" class="btn btn-sm btn-outline-secondary">View</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

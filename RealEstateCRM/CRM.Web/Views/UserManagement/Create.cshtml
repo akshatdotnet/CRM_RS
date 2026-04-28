@@ -1,0 +1,54 @@
+@model CreateUserViewModel
+@{ ViewData["Title"] = "Add User"; ViewData["Breadcrumb"] = "Add User"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 fw-semibold">Add New User</h4>
+    <a asp-action="Index" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="mb-3">
+                        <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                        <input asp-for="FullName" class="form-control" placeholder="e.g. Ajay Sharma" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="user@company.com" />
+                        <span asp-validation-for="Email" class="text-danger small"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Role <span class="text-danger">*</span></label>
+                        <select asp-for="Role" class="form-select">
+                            <option value="Admin">Admin — Full access</option>
+                            <option value="SeniorAgent">Senior Agent — View all leads, manage team</option>
+                            <option value="Agent" selected>Agent — Own leads only</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Link to Agent (optional)</label>
+                        <select asp-for="AgentId" class="form-select">
+                            <option value="">-- Not linked to an agent --</option>
+                            @foreach (var a in Model.Agents)
+                            { <option value="@a.Id">@a.FullName</option> }
+                        </select>
+                        <small class="text-muted">Links this login account to an existing agent profile.</small>
+                    </div>
+                    <div class="p-3 rounded-3 mb-4" style="background:#f8f9fa;font-size:12px;color:#6c757d;line-height:1.6;">
+                        <i class="bi bi-info-circle me-1"></i>A secure temporary password will be auto-generated and emailed to the user. They must change it on first login.
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="bi bi-person-plus me-1"></i>Create User & Send Welcome Email
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }

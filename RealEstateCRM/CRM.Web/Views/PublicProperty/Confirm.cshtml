@@ -1,0 +1,134 @@
+@model ClientDealConfirmationViewModel
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Confirm Deal — @Model.PropertyTitle</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <style>body{font-family:'Segoe UI',sans-serif;background:#f8f9fa;}</style>
+</head>
+<body>
+    <nav class="navbar bg-white border-bottom px-4 py-2">
+        <span class="navbar-brand fw-semibold text-primary mb-0">RealEstate CRM</span>
+        <span class="text-muted" style="font-size:12px;">Deal Confirmation</span>
+    </nav>
+
+    <div class="container" style="max-width:700px;padding:2rem 1rem;">
+        <!-- Property summary strip -->
+        <div class="bg-white rounded-3 shadow-sm p-3 mb-4 d-flex gap-3 align-items-center">
+            @if (!string.IsNullOrEmpty(Model.PrimaryPhoto))
+            { <img src="@Model.PrimaryPhoto" style="width:80px;height:64px;object-fit:cover;border-radius:8px;" /> }
+            <div>
+                <div class="fw-semibold">@Model.PropertyTitle</div>
+                <div class="text-muted" style="font-size:13px;">@Model.PropertyLocation</div>
+                <div class="text-primary fw-semibold">@Model.PriceLabel</div>
+            </div>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="d-flex gap-3 mb-4 flex-wrap">
+            <span class="d-flex align-items-center gap-1 text-muted" style="font-size:12px;"><i class="bi bi-shield-lock text-success"></i>Secure & Confidential</span>
+            <span class="d-flex align-items-center gap-1 text-muted" style="font-size:12px;"><i class="bi bi-credit-card text-primary"></i>No payment now</span>
+            <span class="d-flex align-items-center gap-1 text-muted" style="font-size:12px;"><i class="bi bi-clock text-warning"></i>Agent contacts in 24h</span>
+        </div>
+
+        <div class="bg-white rounded-3 shadow-sm p-4">
+            <h5 class="fw-semibold mb-1">Deal Confirmation Form</h5>
+            <p class="text-muted mb-4" style="font-size:13px;">Fill in your details to express your intent to purchase. Our agent will review and contact you within 24 hours.</p>
+
+            <form asp-controller="PublicProperty" asp-action="Confirm" asp-route-slug="@ViewContext.RouteData.Values["slug"]" method="post">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="PropertyId" />
+
+                <h6 class="text-muted fw-semibold mb-3" style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;">Personal Details</h6>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Full Name *</label>
+                        <input asp-for="ClientName" class="form-control" placeholder="As per Aadhaar/PAN" />
+                        <span asp-validation-for="ClientName" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Phone Number *</label>
+                        <input asp-for="ClientPhone" class="form-control" type="tel" />
+                        <span asp-validation-for="ClientPhone" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email *</label>
+                        <input asp-for="ClientEmail" class="form-control" type="email" />
+                        <span asp-validation-for="ClientEmail" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">PAN Number</label>
+                        <input asp-for="ClientPAN" class="form-control" placeholder="ABCDE1234F" style="text-transform:uppercase;" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Aadhaar (Last 4)</label>
+                        <input asp-for="ClientAadhaar" class="form-control" placeholder="XXXX" maxlength="4" />
+                    </div>
+                </div>
+
+                <h6 class="text-muted fw-semibold mb-3" style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;">Deal Details</h6>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Your Offered Price (₹) *</label>
+                        <input asp-for="OfferedPrice" type="number" class="form-control" />
+                        <span asp-validation-for="OfferedPrice" class="text-danger small"></span>
+                        <small class="text-muted">Listed price: @Model.PriceLabel</small>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Payment Mode *</label>
+                        <select asp-for="PaymentMode" class="form-select">
+                            <option value="">-- Select --</option>
+                            <option>Full Cash Payment</option>
+                            <option>Home Loan</option>
+                            <option>Part Cash + Loan</option>
+                            <option>NRI / Foreign Transfer</option>
+                        </select>
+                        <span asp-validation-for="PaymentMode" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6" id="loanBankDiv" style="display:none;">
+                        <label class="form-label">Preferred Bank (for Loan)</label>
+                        <input asp-for="LoanBank" class="form-control" placeholder="e.g. SBI, HDFC, ICICI" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Notes / Special Requests</label>
+                        <textarea asp-for="Notes" class="form-control" rows="2" placeholder="Any specific conditions, move-in date preference, etc."></textarea>
+                    </div>
+                </div>
+
+                <!-- Consent -->
+                <div class="p-3 rounded-3 mb-4" style="background:#f8f9fa;border:1px solid #dee2e6;">
+                    <div class="form-check">
+                        <input asp-for="ClientConsent" class="form-check-input" type="checkbox" />
+                        <label class="form-check-label" style="font-size:13px;">
+                            I confirm that the details provided are accurate and I consent to being contacted by the agent regarding this property.
+                            I understand this is an expression of intent only and does not constitute a legally binding agreement.
+                        </label>
+                        <span asp-validation-for="ClientConsent" class="text-danger small d-block"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2">
+                    <i class="bi bi-handshake me-2"></i>Submit Deal Confirmation
+                </button>
+                <p class="text-center text-muted mt-2" style="font-size:11px;">
+                    <i class="bi bi-lock me-1"></i>Your information is encrypted and shared only with the property agent.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $('#PaymentMode').change(function() {
+            var v = $(this).val();
+            $('#loanBankDiv').toggle(v.includes('Loan'));
+        });
+    </script>
+</body>
+</html>

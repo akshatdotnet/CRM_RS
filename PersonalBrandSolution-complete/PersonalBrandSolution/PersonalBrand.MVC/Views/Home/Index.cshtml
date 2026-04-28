@@ -1,0 +1,557 @@
+@model PersonalBrand.MVC.ViewModels.HomeViewModel
+@using System.Text.Json
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.PersonaName = Model.Persona.Name;
+    var antiForgeryToken = Html.AntiForgeryToken();
+}
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 hero-content">
+        <div class="hero-eyebrow">Available for Consulting &amp; Contracts</div>
+        <h1 class="hero-name">
+          Hi, I'm<br>
+          <span class="highlight">@Model.Persona.Name</span>
+        </h1>
+        <div class="hero-typing-wrap">
+          &gt; <span id="typingText"></span><span class="cursor">|</span>
+        </div>
+        <p class="hero-desc">@Model.Persona.Bio</p>
+        <div class="hero-stats">
+          @foreach (var stat in Model.Persona.Stats)
+          {
+            <div>
+              <div class="hero-stat-num counter" data-target="@stat.Value.Replace("+","").Replace("K","000")">0</div>
+              <div class="hero-stat-label">@(stat.Key == "projects" ? "Projects" : stat.Key == "clients" ? "Clients" : stat.Key == "students" ? "Students Trained" : stat.Key)</div>
+            </div>
+          }
+        </div>
+        <div class="d-flex flex-wrap gap-3">
+          <a class="btn-primary-custom" href="#contact"><span><i class="bi bi-calendar-check me-1"></i>Book Consultation</span></a>
+          <a class="btn-outline-custom" href="#projects"><i class="bi bi-folder2-open me-1"></i>View Projects</a>
+        </div>
+        <div class="hero-social">
+          <a href="@Model.Persona.Github" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+          <a href="@Model.Persona.LinkedIn" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          <a href="@Model.Persona.Twitter" target="_blank" rel="noopener" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="@Model.Persona.YouTube" target="_blank" rel="noopener" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          <a href="mailto:@Model.Persona.Email" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-6 hero-visual">
+        <div class="hero-code-card">
+          <div class="code-dots">
+            <div class="code-dot red"></div><div class="code-dot yellow"></div><div class="code-dot green"></div>
+          </div>
+          <div>
+            <span class="code-cm">// @Model.Persona.Name — .NET @DateTime.Now.Year</span><br>
+            <span class="code-kw">public class</span> <span class="code-cls">SeniorDeveloper</span><br>
+            &nbsp;&nbsp;<span class="code-kw">:</span> <span class="code-cls">IConsultant</span>, <span class="code-cls">ITrainer</span><br>
+            {<br>
+            &nbsp;&nbsp;<span class="code-prop">Experience</span> = <span class="code-num">@Model.Persona.Experience</span>;<br>
+            &nbsp;&nbsp;<span class="code-prop">Stack</span> = [<span class="code-str">".NET8"</span>, <span class="code-str">"Azure"</span>];<br><br>
+            &nbsp;&nbsp;<span class="code-kw">public async</span> <span class="code-cls">Task</span>&lt;<span class="code-cls">Solution</span>&gt;<br>
+            &nbsp;&nbsp;<span class="code-prop">BuildAsync</span>(<span class="code-cls">Problem</span> p)<br>
+            &nbsp;&nbsp;{<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-kw">return await</span> <span class="code-prop">Architect</span>(p).<span class="code-prop">Ship</span>();<br>
+            &nbsp;&nbsp;}<br>}
+          </div>
+          <div class="float-badge badge-az">☁️ Azure Certified</div>
+          <div class="float-badge badge-net">🔷 .NET 8 Expert</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
+<section id="about" class="section-pad">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 text-center">
+        <div class="about-img-wrap d-inline-block mb-5">
+          <div style="width:320px;max-width:100%;height:380px;background:linear-gradient(135deg,var(--bg-card-hover),var(--bg-card));border:2px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:6rem;margin:0 auto">👨‍💻</div>
+          <div class="exp-badge"><div class="num">@Model.Persona.Experience+</div><div class="lbl">Years Experience</div></div>
+        </div>
+        <div class="cert-badges justify-content-center">
+          @foreach (var cert in Model.Persona.Certifications)
+          {
+            <span class="cert-badge">@cert</span>
+          }
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <span class="section-label">About Me</span>
+        <h2 class="section-title">Turning Complex Problems into <span class="text-cyan">Elegant Solutions</span></h2>
+        <p style="color:var(--text-secondary);font-size:0.95rem;margin-bottom:28px;line-height:1.9">@Model.Persona.Bio</p>
+        <div id="skillBars">
+          @foreach (var skill in Model.Skills)
+          {
+            <div class="skill-bar-wrap fade-in-up">
+              <div class="skill-bar-label"><span>@skill.Name</span><span>@skill.Percentage%</span></div>
+              <div class="skill-bar-track">
+                <div class="skill-bar-fill" data-pct="@skill.Percentage"></div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="/resume.pdf" class="btn-primary-custom" download><span><i class="bi bi-download me-1"></i>Download Resume</span></a>
+          <a href="#consulting" class="btn-outline-custom"><i class="bi bi-briefcase me-1"></i>Hire Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ ROADMAP ═══════════════════════════ -->
+<section id="roadmap" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Career Journey</span>
+      <h2 class="section-title mx-auto">Skills <span class="text-cyan">Roadmap</span></h2>
+      <p class="section-subtitle mx-auto">@Model.Persona.Experience years of hands-on evolution from .NET Framework to AI-powered cloud-native systems</p>
+    </div>
+    <div class="roadmap-container position-relative">
+      <div class="roadmap-line d-none d-lg-block"></div>
+      @foreach (var item in Model.Roadmap)
+      {
+        <div class="roadmap-item @(item.Side == "right" ? "right" : "") fade-in-up">
+          <div class="roadmap-content">
+            <div class="roadmap-year">@item.Year · @item.Era</div>
+            <div class="roadmap-title">@item.Icon @item.Title</div>
+            <p style="font-size:0.85rem;color:var(--text-secondary);margin-bottom:12px">@item.Description</p>
+            <div class="roadmap-tags">
+              @foreach (var tag in item.Tags) { <span class="tag">@tag</span> }
+            </div>
+          </div>
+          <div class="roadmap-dot">@item.Icon</div>
+          <div style="flex:1"></div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ COURSES ═══════════════════════════ -->
+<section id="courses" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Learn From Experience</span>
+      <h2 class="section-title">Course <span class="text-cyan">Syllabus</span></h2>
+      <p class="section-subtitle mx-auto">Production-focused courses with real-world enterprise project scenarios</p>
+    </div>
+    <div class="row">
+      @foreach (var (course, i) in Model.Courses.Select((c, i) => (c, i)))
+      {
+        <div class="col-md-6 col-lg-4 mb-4 fade-in-up delay-@((i % 3) + 1)">
+          <div class="course-card">
+            <div class="course-header">
+              <span class="course-level level-@course.Level">@course.Level.ToUpper()</span>
+              <div class="course-icon">@course.Icon</div>
+              <div class="course-title">@course.Title</div>
+              <div class="course-meta">
+                <span><i class="bi bi-clock me-1"></i>@course.Duration</span>
+                <span><i class="bi bi-people me-1"></i>@course.Students students</span>
+              </div>
+            </div>
+            <div class="course-body">
+              <ul class="module-list">
+                @foreach (var module in course.Modules) { <li>@module</li> }
+              </ul>
+              <div class="mt-3">
+                <a href="#contact" class="btn-primary-custom" style="font-size:0.75rem;padding:10px 20px">
+                  <span><i class="bi bi-play-circle me-1"></i>Enroll Now</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PROJECTS ═══════════════════════════ -->
+<section id="projects" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Portfolio</span>
+      <h2 class="section-title">Featured <span class="text-cyan">Projects</span></h2>
+      <p class="section-subtitle mx-auto">Real enterprise solutions delivered across industries</p>
+    </div>
+    <div class="row">
+      @foreach (var (project, i) in Model.Projects.Select((p, i) => (p, i)))
+      {
+        <div class="col-md-6 col-lg-4 mb-4 fade-in-up delay-@((i % 3) + 1)">
+          <div class="project-card">
+            <div class="project-img">
+              <span style="font-size:4rem">@project.Emoji</span>
+              <div class="project-overlay">
+                <a href="@project.GithubUrl" class="btn-outline-custom" style="padding:8px 16px;font-size:0.72rem"><i class="bi bi-github"></i> GitHub</a>
+                <a href="@project.DemoUrl" class="btn-primary-custom" style="padding:8px 16px;font-size:0.72rem"><span><i class="bi bi-box-arrow-up-right"></i> Demo</span></a>
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-industry">@project.Industry</div>
+              <div class="project-title">@project.Title</div>
+              <div class="project-desc">
+                <strong style="color:var(--text-muted);font-size:0.75rem;font-family:var(--font-mono)">PROBLEM:</strong><br>
+                @project.Problem<br><br>@project.Description
+              </div>
+              <div class="project-stack">
+                @foreach (var tech in project.Stack) { <span class="stack-tag">@tech</span> }
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;margin-top:8px">
+                <i class="bi bi-trophy-fill" style="color:var(--accent-cyan);font-size:0.75rem"></i>
+                <span style="font-family:var(--font-mono);font-size:0.72rem;color:var(--accent-cyan)">@project.Highlight</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ Q&A ═══════════════════════════ -->
+<section id="qa" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Interview Prep</span>
+      <h2 class="section-title">Q&amp;A <span class="text-cyan">Practice Bank</span></h2>
+      <p class="section-subtitle mx-auto">Curated from 100+ real interviews over 15 years</p>
+    </div>
+    <input type="search" class="qa-search" id="qaSearch" placeholder="🔍  Search questions... e.g. 'async', 'CQRS', 'Azure'" aria-label="Search Q&A" />
+    <div class="qa-filter-bar" id="qaFilters" role="group">
+      @foreach (var lvl in new[]{"all","basic","intermediate","advanced","azure","architecture"})
+      {
+        <button class="qa-filter-btn @(lvl == "all" ? "active" : "")" data-cat="@lvl">@lvl.ToUpper()</button>
+      }
+    </div>
+    <div class="accordion qa-accordion" id="qaAccordion">
+      @foreach (var (qa, i) in Model.QAItems.Select((q,i)=>(q,i)))
+      {
+        <div class="accordion-item qa-accordion" data-category="@qa.Level">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#qa@(qa.Id)">
+              <div class="qa-btn-wrap">
+                <span>@qa.Question</span>
+                <span class="qa-level @qa.Level">@qa.Level.ToUpper()</span>
+                <span class="ms-2" style="font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);flex-shrink:0">@qa.Category</span>
+              </div>
+            </button>
+          </h2>
+          <div id="qa@(qa.Id)" class="accordion-collapse collapse">
+            <div class="accordion-body">@qa.Answer</div>
+          </div>
+        </div>
+      }
+    </div>
+    <!-- AJAX-loaded results go here -->
+    <div id="qaAjaxResults"></div>
+    <div class="text-center mt-4">
+      <a href="#contact" class="btn-outline-custom"><i class="bi bi-chat-dots me-1"></i> Request More Q&amp;A Topics</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONSULTING ═══════════════════════════ -->
+<section id="consulting" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Work With Me</span>
+      <h2 class="section-title">Consulting &amp; <span class="text-cyan">Services</span></h2>
+      <p class="section-subtitle mx-auto">Flexible engagement models for startups, SMEs, and enterprise teams</p>
+    </div>
+    <div class="row justify-content-center">
+      @foreach (var (svc, i) in Model.Services.Select((s,i)=>(s,i)))
+      {
+        <div class="col-md-4 mb-4 fade-in-up delay-@(i+1)">
+          <div class="service-card @(svc.IsFeatured ? "featured" : "")">
+            <div class="service-icon">@svc.Icon</div>
+            <h4 style="font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:8px">@svc.Title</h4>
+            <p style="font-size:0.8rem;color:var(--text-muted)">@svc.Description</p>
+            <div class="service-price">@svc.Price</div>
+            <div class="service-period">@svc.Period</div>
+            <ul class="service-features">
+              @foreach (var feat in svc.Features)
+              {
+                <li><i class="bi bi-check-circle-fill"></i>@feat</li>
+              }
+            </ul>
+            <a href="#contact" class="btn-primary-custom w-100" style="justify-content:center"><span>Book Now</span></a>
+          </div>
+        </div>
+      }
+    </div>
+    <!-- Tech stack tags -->
+    <div class="text-center mt-5">
+      <p style="font-family:var(--font-mono);font-size:0.75rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px">Technologies I work with</p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:10px">
+        @foreach (var tech in new[]{".NET 8","C# 12","ASP.NET Core","Azure","Kubernetes","Docker","EF Core","Microservices","CQRS","DDD","gRPC","SignalR","Semantic Kernel","Azure OpenAI","Terraform","GitHub Actions"})
+        {
+          <span class="tag" style="padding:6px 14px">@tech</span>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PIPELINE / CRM ═══════════════════════════ -->
+<section id="pipeline" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">CRM Dashboard</span>
+      <h2 class="section-title">Lead <span class="text-cyan">Pipeline</span></h2>
+      <p class="section-subtitle mx-auto">Full lead lifecycle — from first contact to closed deal</p>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="pipeline-stats">
+      @{var statuses = new[]{"new","contacted","proposal","negotiation","closed"};}
+      @{var statusLabels = new Dictionary<string,string>{{"new","Lead"},{"contacted","Contacted"},{"proposal","Proposal"},{"negotiation","Negotiate"},{"closed","Closed ✓"}};}
+      @foreach (var s in statuses)
+      {
+        <div class="pipeline-stat">
+          <div class="pipeline-stat-num">@(Model.Pipeline.CountByStatus.GetValueOrDefault(s, 0))</div>
+          <div class="pipeline-stat-lbl">@statusLabels[s]</div>
+        </div>
+      }
+      <div class="pipeline-stat">
+        <div class="pipeline-stat-num">@Model.Pipeline.TotalLeads</div>
+        <div class="pipeline-stat-lbl">Total Leads</div>
+      </div>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="pipeline-board" id="pipelineBoard">
+      @{var colColors = new Dictionary<string,string>{{"new","col-new"},{"contacted","col-contacted"},{"proposal","col-proposal"},{"negotiation","col-negotiation"},{"closed","col-closed"}};}
+      @foreach (var status in statuses)
+      {
+        var leads = Model.Pipeline.Leads.Where(l => l.Status == status).ToList();
+        <div class="pipeline-col @colColors[status]" data-status="@status">
+          <div class="pipeline-col-header">
+            <span>@statusLabels[status]</span>
+            <span class="count">@leads.Count</span>
+          </div>
+          <div class="pipeline-col-body">
+            @foreach (var lead in leads)
+            {
+              <div class="lead-card" data-id="@lead.Id" onclick="openLeadModal(@lead.Id, '@Html.Raw(System.Web.HttpUtility.JavaScriptStringEncode(lead.Name))', '@lead.Status', '@Html.Raw(System.Web.HttpUtility.JavaScriptStringEncode(lead.Role ?? ""))', '@lead.Value', '@Html.Raw(System.Web.HttpUtility.JavaScriptStringEncode(lead.Service ?? ""))' )">
+                <div class="lead-name">@lead.Name</div>
+                <div class="lead-role">@lead.Role</div>
+                <div class="lead-value">@lead.Value</div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Contact Form -->
+    <div class="row justify-content-center mt-5" id="contact">
+      <div class="col-lg-8">
+        <div class="contact-form">
+          <div class="text-center mb-4">
+            <span class="section-label">Get In Touch</span>
+            <h3 style="font-size:1.5rem;font-weight:700;color:var(--text-primary)">Start a <span class="text-cyan">Project</span></h3>
+          </div>
+          <form asp-action="Contact" asp-controller="Home" method="post" id="contactForm">
+            @Html.AntiForgeryToken()
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="cName">Full Name *</label>
+                  <input type="text" class="form-control-custom" id="cName" name="Name" placeholder="Priya Mehta" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="cEmail">Email Address *</label>
+                  <input type="email" class="form-control-custom" id="cEmail" name="Email" placeholder="priya@company.com" required />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="cService">Service Needed</label>
+                  <select class="form-control-custom" id="cService" name="Service">
+                    <option value="">— Select Service —</option>
+                    <option>Contract Development</option>
+                    <option>Architecture Consulting</option>
+                    <option>Corporate Training</option>
+                    <option>Code Review</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="cBudget">Budget Range</label>
+                  <select class="form-control-custom" id="cBudget" name="Budget">
+                    <option value="">— Select Budget —</option>
+                    <option>₹50K – ₹1L</option>
+                    <option>₹1L – ₹5L</option>
+                    <option>₹5L – ₹15L</option>
+                    <option>₹15L+</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group-custom">
+                  <label class="form-label-custom" for="cMessage">Your Message *</label>
+                  <textarea class="form-control-custom" id="cMessage" name="Message" rows="5" placeholder="Tell me about your project, timeline, and requirements..." required></textarea>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn-primary-custom w-100" style="justify-content:center;padding:16px">
+                  <span id="submitText"><i class="bi bi-send-fill me-2"></i>Send Inquiry — I'll respond in 24hrs</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ BLOG ═══════════════════════════ -->
+<section id="blog" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Knowledge Sharing</span>
+      <h2 class="section-title">Blog &amp; <span class="text-cyan">Resources</span></h2>
+      <p class="section-subtitle mx-auto">Deep-dive articles from real production experience — no fluff</p>
+    </div>
+    <div class="row">
+      @foreach (var (post, i) in Model.BlogPosts.Select((b,i)=>(b,i)))
+      {
+        <div class="col-md-6 col-lg-4 mb-4 fade-in-up delay-@((i % 3) + 1)">
+          <div class="blog-card">
+            <div class="blog-thumb"><span>@post.Emoji</span></div>
+            <div class="blog-body">
+              <div class="blog-cat">@post.Category</div>
+              <div class="blog-title">@post.Title</div>
+              <div class="blog-excerpt">@post.Excerpt</div>
+              <div class="blog-meta">
+                <span><i class="bi bi-calendar3 me-1"></i>@post.PublishedDate</span>
+                <span><i class="bi bi-clock me-1"></i>@post.ReadTime</span>
+                <span><i class="bi bi-eye me-1"></i>@post.Views</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="text-center mt-3">
+      <a href="#" class="btn-outline-custom"><i class="bi bi-newspaper me-1"></i>View All Articles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+<section id="testimonials" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-label">Social Proof</span>
+      <h2 class="section-title">What Clients <span class="text-cyan">Say</span></h2>
+    </div>
+    <div class="row">
+      @foreach (var (t, i) in Model.Testimonials.Select((t,i)=>(t,i)))
+      {
+        <div class="col-md-6 col-lg-4 mb-4 fade-in-up delay-@((i % 3) + 1)">
+          <div class="testi-card">
+            <div class="testi-quote">"</div>
+            <p class="testi-text">@t.Text</p>
+            <div class="testi-author">
+              <div class="testi-avatar">@t.Initials</div>
+              <div>
+                <div class="testi-name">@t.Name</div>
+                <div class="testi-company">@t.Company</div>
+                <div class="stars">@(new string('★', t.Stars))@(new string('☆', 5 - t.Stars))</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <div class="footer-brand">@Model.Persona.Name</div>
+        <p class="footer-desc">@Model.Persona.ShortTitle · @Model.Persona.Experience+ years building scalable .NET &amp; Azure solutions.</p>
+        <div class="footer-social">
+          <a href="@Model.Persona.Github" target="_blank" rel="noopener"><i class="bi bi-github"></i></a>
+          <a href="@Model.Persona.LinkedIn" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i></a>
+          <a href="@Model.Persona.Twitter" target="_blank" rel="noopener"><i class="bi bi-twitter-x"></i></a>
+          <a href="@Model.Persona.YouTube" target="_blank" rel="noopener"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#qa">Interview Q&amp;A</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="#consulting">Contract Dev</a></li>
+          <li><a href="#consulting">Architecture</a></li>
+          <li><a href="#consulting">Training</a></li>
+          <li><a href="#pipeline">Pipeline CRM</a></li>
+          <li><a href="#contact">Hire Me</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4">
+        <div class="footer-heading">Newsletter</div>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:14px">Weekly .NET tips, Azure insights &amp; career advice. No spam.</p>
+        <form asp-action="Newsletter" asp-controller="Home" method="post" id="newsletterForm">
+          @Html.AntiForgeryToken()
+          <div class="newsletter-form">
+            <input type="email" class="newsletter-input" id="newsletterEmail" name="email" placeholder="your@email.com" />
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </div>
+        </form>
+        <p style="font-size:0.7rem;color:var(--text-muted);margin-top:10px"><i class="bi bi-shield-check me-1"></i>GDPR compliant · Unsubscribe anytime</p>
+        <div class="mt-4">
+          <a href="mailto:@Model.Persona.Email" style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text-secondary);text-decoration:none">@Model.Persona.Email</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <span>© @DateTime.Now.Year @Model.Persona.Name · All rights reserved</span>
+      <span style="color:var(--text-muted)">Built with <span style="color:var(--accent-cyan)">ASP.NET Core MVC</span> &amp; ❤️</span>
+      <div style="display:flex;gap:16px">
+        <a href="#" style="color:var(--text-muted);text-decoration:none">Privacy Policy</a>
+        <a href="#" style="color:var(--text-muted);text-decoration:none">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+@section Scripts {
+<script>
+  // Pass server data to JavaScript
+  window.AppData = {
+    antiForgeryToken: '@Html.AntiForgeryToken().ToString().Replace("\"","&quot;")',
+    qaItems: @Html.Raw(JsonSerializer.Serialize(Model.QAItems)),
+    pipelineLeads: @Html.Raw(JsonSerializer.Serialize(Model.Pipeline.Leads))
+  };
+</script>
+}

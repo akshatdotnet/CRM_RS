@@ -1,0 +1,45 @@
+body { font-family: 'Segoe UI', sans-serif; font-size: 14px; }
+
+.nav-link-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 16px; font-size: 13px; color: #495057;
+    text-decoration: none; border-left: 3px solid transparent;
+    transition: all .15s;
+}
+.nav-link-item:hover { background: #f8f9fa; color: #185FA5; }
+.nav-link-item.active { background: #e8f0f9; color: #185FA5; border-left-color: #185FA5; font-weight: 500; }
+
+.badge-stage { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+.badge-New { background:#E6F1FB;color:#185FA5; }
+.badge-Contacted { background:#FAEEDA;color:#854F0B; }
+.badge-Site-Visit { background:#EEEDFE;color:#534AB7; }
+.badge-Negotiation { background:#EAF3DE;color:#3B6D11; }
+.badge-Closed { background:#E1F5EE;color:#0F6E56; }
+.badge-Lost { background:#FCEBEB;color:#A32D2D; }
+
+.metric-card { background:#f8f9fa;border-radius:10px;padding:16px; }
+.metric-label { font-size:12px;color:#6c757d;margin-bottom:4px; }
+.metric-value { font-size:24px;font-weight:600; }
+
+.pipeline-col { min-width:200px;flex:1; }
+.pipeline-header { border-radius:8px 8px 0 0;padding:8px 12px;font-size:12px;font-weight:600;display:flex;justify-content:space-between;align-items:center; }
+.ph-New { background:#E6F1FB;color:#185FA5; }
+.ph-Contacted { background:#FAEEDA;color:#854F0B; }
+.ph-Site-Visit { background:#EEEDFE;color:#534AB7; }
+.ph-Negotiation { background:#EAF3DE;color:#3B6D11; }
+.ph-Closed { background:#E1F5EE;color:#0F6E56; }
+
+.lead-card { background:#fff;border:1px solid #e9ecef;border-radius:8px;padding:12px;margin-bottom:8px;cursor:pointer;transition:border-color .15s; }
+.lead-card:hover { border-color:#185FA5; }
+
+.deadline-ok { background:#EAF3DE;color:#3B6D11;font-size:10px;padding:2px 7px;border-radius:20px; }
+.deadline-warn { background:#FAEEDA;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:20px; }
+.deadline-overdue { background:#FCEBEB;color:#A32D2D;font-size:10px;padding:2px 7px;border-radius:20px; }
+
+.timeline-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px; }
+.timeline-line { width:1px;background:#dee2e6;margin:0 4.5px;flex-grow:1; }
+
+.avatar-circle { width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex-shrink:0; }
+
+.progress-bar-thin { height:6px;border-radius:20px; }
+table th { font-size:12px;font-weight:600;color:#6c757d; }

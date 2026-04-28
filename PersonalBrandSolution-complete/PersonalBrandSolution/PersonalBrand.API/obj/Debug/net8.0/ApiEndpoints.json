@@ -1,0 +1,307 @@
+[
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.HealthController",
+    "Method": "Get",
+    "RelativePath": "api/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "api-version",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.BlogController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Blog",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.BlogController",
+    "Method": "GetBySlug",
+    "RelativePath": "api/v1/Blog/{slug}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "slug",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.CoursesController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Courses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.CoursesController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/Courses/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.LeadsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Leads",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.LeadsController",
+    "Method": "Create",
+    "RelativePath": "api/v1/Leads",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PersonalBrand.Shared.Models.ContactFormDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.LeadsController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/Leads/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.LeadsController",
+    "Method": "AddNote",
+    "RelativePath": "api/v1/Leads/{id}/notes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "PersonalBrand.Shared.Models.AddNoteDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.LeadsController",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/v1/Leads/{id}/status",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "PersonalBrand.Shared.Models.UpdateLeadStatusDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.LeadsController",
+    "Method": "GetPipeline",
+    "RelativePath": "api/v1/Leads/pipeline",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.NewsletterController",
+    "Method": "Subscribe",
+    "RelativePath": "api/v1/Newsletter/subscribe",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PersonalBrand.Shared.Models.NewsletterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.PersonaController",
+    "Method": "Get",
+    "RelativePath": "api/v1/Persona",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 404
+      }
+    ]
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.ProjectsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Projects",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "featured",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.ProjectsController",
+    "Method": "GetById",
+    "RelativePath": "api/v1/Projects/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.QAController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/QA",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "level",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.RoadmapController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Roadmap",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.ServicesController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Services",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.SkillsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Skills",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PersonalBrand.API.Controllers.TestimonialsController",
+    "Method": "GetAll",
+    "RelativePath": "api/v1/Testimonials",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

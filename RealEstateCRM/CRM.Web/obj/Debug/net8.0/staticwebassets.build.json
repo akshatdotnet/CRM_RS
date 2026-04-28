@@ -1,0 +1,228 @@
+{
+  "Version": 1,
+  "Hash": "WhXyD7PNha8grzdZA8rr5CKsHJrbeYa7Kt8dXe4rG6s=",
+  "Source": "CRM.Web",
+  "BasePath": "_content/CRM.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "CRM.Web\\wwwroot",
+      "Source": "CRM.Web",
+      "ContentRoot": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\",
+      "BasePath": "_content/CRM.Web",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\css\\site.css",
+      "SourceId": "CRM.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\",
+      "BasePath": "_content/CRM.Web",
+      "RelativePath": "css/site#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "oecszbsjxg",
+      "Integrity": "0LwPB2No4hU+HjM2m7cHi246hX2OR06lvxJs+IEYdH8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\js\\site.js",
+      "SourceId": "CRM.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\",
+      "BasePath": "_content/CRM.Web",
+      "RelativePath": "js/site#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ehi6obz96s",
+      "Integrity": "EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\site.js"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/site.css",
+      "AssetFile": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2450"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0LwPB2No4hU+HjM2m7cHi246hX2OR06lvxJs+IEYdH8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 08:37:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0LwPB2No4hU+HjM2m7cHi246hX2OR06lvxJs+IEYdH8="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.oecszbsjxg.css",
+      "AssetFile": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2450"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0LwPB2No4hU+HjM2m7cHi246hX2OR06lvxJs+IEYdH8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 08:37:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "oecszbsjxg"
+        },
+        {
+          "Name": "label",
+          "Value": "css/site.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0LwPB2No4hU+HjM2m7cHi246hX2OR06lvxJs+IEYdH8="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.ehi6obz96s.js",
+      "AssetFile": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1108"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 08:37:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ehi6obz96s"
+        },
+        {
+          "Name": "label",
+          "Value": "js/site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.js",
+      "AssetFile": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1108"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 21 Apr 2026 08:37:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4="
+        }
+      ]
+    }
+  ]
+}

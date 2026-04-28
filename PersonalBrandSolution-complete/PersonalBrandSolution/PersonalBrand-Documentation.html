@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PersonalBrand — Test Results & Documentation</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Sora:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050d1a;--bg2:#0a1628;--bg3:#0d1f38;
+  --cyan:#00d4ff;--blue:#0066ff;--green:#22c55e;--red:#ef4444;
+  --text:#e8f4ff;--muted:#7aa3c8;--dim:#4a6a8a;
+  --border:rgba(0,212,255,0.12);
+}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--cyan);text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Header */
+.doc-header{background:linear-gradient(135deg,#0a1628 0%,#0d1f38 100%);border-bottom:1px solid var(--border);padding:40px 0 32px}
+.header-grid{display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;flex-wrap:wrap}
+.logo{font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--cyan);margin-bottom:6px}
+.doc-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.2;margin-bottom:8px}
+.doc-subtitle{color:var(--muted);font-size:0.9rem}
+
+/* Result pill */
+.result-pill{background:linear-gradient(135deg,#0a2d0f,#0f3d1a);border:1px solid #22c55e40;border-radius:12px;padding:20px 28px;text-align:center;min-width:200px}
+.pill-num{font-family:'JetBrains Mono',monospace;font-size:2.8rem;font-weight:700;color:#22c55e;line-height:1}
+.pill-label{font-size:0.75rem;color:#86efac;margin-top:4px;letter-spacing:0.05em}
+
+/* Stat cards */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:28px 0}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700;line-height:1}
+.stat-lbl{font-size:0.72rem;color:var(--muted);margin-top:4px;letter-spacing:0.04em;text-transform:uppercase}
+.stat-bar{height:4px;border-radius:2px;margin-top:12px;background:#1a2d45}
+.stat-fill{height:100%;border-radius:2px}
+
+/* Section */
+.section{padding:40px 0}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.2em;color:var(--cyan);text-transform:uppercase;display:block;margin-bottom:8px}
+.section-title{font-size:clamp(1.2rem,3vw,1.8rem);font-weight:800;margin-bottom:24px}
+
+/* Arch boxes */
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.arch-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative;overflow:hidden}
+.arch-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.arch-title{font-weight:700;font-size:1rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.arch-items{list-style:none}
+.arch-items li{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--muted);padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:6px}
+.arch-items li::before{content:'›';color:var(--cyan)}
+
+/* API table */
+.api-table{width:100%;border-collapse:collapse;font-size:0.82rem}
+.api-table th{background:#0d1f38;padding:10px 14px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;color:var(--muted);text-transform:uppercase;border-bottom:1px solid var(--border)}
+.api-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top}
+.api-table tr:hover td{background:rgba(0,212,255,0.03)}
+.method{font-family:'JetBrains Mono',monospace;font-size:0.72rem;font-weight:700;padding:2px 8px;border-radius:4px}
+.get{background:#0a2d1a;color:#4ade80;border:1px solid #22c55e30}
+.post{background:#1a1a0a;color:#fbbf24;border:1px solid #f59e0b30}
+.patch{background:#1a0d2d;color:#a78bfa;border:1px solid #8b5cf630}
+.endpoint{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--cyan)}
+.status-chip{font-family:'JetBrains Mono',monospace;font-size:0.68rem;padding:1px 6px;border-radius:3px}
+.s200{background:#0a2d1a;color:#4ade80}
+.s201{background:#0a1e2d;color:#60a5fa}
+.s400{background:#2d1a0a;color:#fbbf24}
+.s404{background:#2d0f0f;color:#f87171}
+
+/* Test results */
+.test-panel{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.test-toolbar{background:var(--bg3);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
+.test-search{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:7px 14px;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:0.78rem;width:260px}
+.test-search:focus{outline:none;border-color:var(--cyan)}
+.filter-btns{display:flex;gap:6px;flex-wrap:wrap}
+.fbtn{font-family:'JetBrains Mono',monospace;font-size:0.65rem;padding:5px 12px;border-radius:4px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
+.fbtn.active,.fbtn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,0.06)}
+.test-table{width:100%;border-collapse:collapse}
+.test-table th{background:#0a1628;padding:10px 16px;text-align:left;font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.08em;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--border);position:sticky;top:0}
+.test-table td{vertical-align:middle}
+.cat-header{background:#081524;border-top:2px solid rgba(0,212,255,0.2)}
+.cls-header{background:#0a1628}
+.badge{font-family:'JetBrains Mono',monospace;font-size:0.65rem;padding:2px 8px;border-radius:99px}
+.pass-badge{background:#0a2d1a;color:#22c55e;border:1px solid #22c55e30}
+.fail-badge{background:#2d0f0f;color:#ef4444;border:1px solid #ef444430}
+
+/* Flow diagram */
+.flow-steps{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:20px 0}
+.flow-step{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:0.78rem;text-align:center;min-width:100px}
+.flow-step .step-num{font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--cyan);margin-bottom:4px}
+.flow-step .step-name{font-weight:600;color:var(--text)}
+.flow-step .step-detail{font-size:0.65rem;color:var(--muted);margin-top:2px;font-family:'JetBrains Mono',monospace}
+.flow-arrow{color:var(--cyan);font-size:1.2rem;flex-shrink:0}
+
+/* Code block */
+.code-block{background:#06111f;border:1px solid var(--border);border-radius:8px;padding:20px;font-family:'JetBrains Mono',monospace;font-size:0.75rem;overflow-x:auto;margin:12px 0;line-height:1.8}
+.code-block .kw{color:#569cd6}.code-block .str{color:#ce9178}.code-block .cm{color:#6a9955}.code-block .cls{color:#4ec9b0}.code-block .fn{color:#dcdcaa}.code-block .prop{color:#9cdcfe}
+
+/* Responsive */
+@media(max-width:768px){
+  .header-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .test-search{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<div class="doc-header">
+<div class="container">
+  <div class="header-grid">
+    <div>
+      <div class="logo">&lt;PersonalBrand.Tests /&gt;</div>
+      <h1 class="doc-title">Complete Technical Documentation<br><span style="color:var(--cyan)">+ Unit Test Results</span></h1>
+      <p class="doc-subtitle">ASP.NET Core Web API · MVC · EF Core · xUnit · Moq · FluentAssertions</p>
+      <p class="doc-subtitle" style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:0.72rem">Generated: 2026-04-21 11:41 UTC</p>
+    </div>
+    <div class="result-pill">
+      <div class="pill-num">107</div>
+      <div class="pill-label">TESTS PASSED</div>
+      <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#86efac">0 FAILED · 0 SKIPPED</div>
+      <div style="margin-top:4px;font-size:0.68rem;color:#64748b">Total Time: 916ms</div>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-val" style="color:#22c55e">107</div>
+      <div class="stat-lbl">Total Tests</div>
+      <div class="stat-bar"><div class="stat-fill" style="width:100%;background:#22c55e"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:#0ea5e9">42</div>
+      <div class="stat-lbl">Service Tests</div>
+      <div class="stat-bar"><div class="stat-fill" style="width:39%;background:#0ea5e9"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:#8b5cf6">20</div>
+      <div class="stat-lbl">Repository Tests</div>
+      <div class="stat-bar"><div class="stat-fill" style="width:19%;background:#8b5cf6"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:#f59e0b">28</div>
+      <div class="stat-lbl">Controller Tests</div>
+      <div class="stat-bar"><div class="stat-fill" style="width:26%;background:#f59e0b"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:#10b981">17</div>
+      <div class="stat-lbl">Shared Tests</div>
+      <div class="stat-bar"><div class="stat-fill" style="width:16%;background:#10b981"></div></div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-val" style="color:var(--cyan)">916ms</div>
+      <div class="stat-lbl">Execution Time</div>
+      <div class="stat-bar"><div class="stat-fill" style="width:60%;background:var(--cyan)"></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="container">
+
+<!-- ══ ARCHITECTURE ══ -->
+<div class="section">
+  <span class="section-label">Solution Design</span>
+  <h2 class="section-title">🏗️ Architecture Overview</h2>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <div class="arch-title"><span style="color:#0ea5e9">🔷</span> PersonalBrand.API <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);font-weight:400">port 5000</span></div>
+      <ul class="arch-items">
+        <li>12 Versioned REST Controllers (api/v1/)</li>
+        <li>Repository Pattern — Generic + Specific</li>
+        <li>Service Layer with Memory Caching (1–6hr)</li>
+        <li>EF Core 8 — SQLite (dev) / SQL Server (prod)</li>
+        <li>12 Domain Entities with soft-delete</li>
+        <li>Global Exception + Request Logging Middleware</li>
+        <li>Swagger / OpenAPI documentation</li>
+        <li>Serilog structured logging (console + file)</li>
+        <li>API Versioning via Asp.Versioning.Mvc</li>
+        <li>CORS configured for MVC origin</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title"><span style="color:#8b5cf6">🌐</span> PersonalBrand.MVC <span style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--muted);font-weight:400">port 5001</span></div>
+      <ul class="arch-items">
+        <li>Typed HttpClient — PersonalBrandApiClient</li>
+        <li>Polly Retry (3x exponential) + Circuit Breaker</li>
+        <li>Task.WhenAll() parallel API calls on page load</li>
+        <li>MVC-side MemoryCache (5–60min TTL)</li>
+        <li>Strongly-typed Razor Views (HomeViewModel)</li>
+        <li>Anti-Forgery tokens on all POST forms</li>
+        <li>TempData toast notifications (POST-Redirect-GET)</li>
+        <li>AJAX Q&amp;A filter + Pipeline lead modal</li>
+        <li>GDPR cookie banner · SEO meta + Schema.org</li>
+        <li>Static file 30-day cache headers</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title"><span style="color:#10b981">📦</span> PersonalBrand.Shared</div>
+      <ul class="arch-items">
+        <li>ApiResponse&lt;T&gt; — unified response wrapper</li>
+        <li>PagedResponse&lt;T&gt; — pagination model</li>
+        <li>All DTOs — PersonaDto, LeadResponseDto, etc.</li>
+        <li>ContactFormDto, NewsletterDto, AddNoteDto</li>
+        <li>LeadStatus constants (new/contacted/proposal…)</li>
+        <li>CacheKeys constants</li>
+        <li>Referenced by both API and MVC projects</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title"><span style="color:#f59e0b">🧪</span> PersonalBrand.Tests</div>
+      <ul class="arch-items">
+        <li>xUnit 2.6.6 test framework</li>
+        <li>Moq 4.20 — service/repo mocking</li>
+        <li>FluentAssertions 6.12 — readable assertions</li>
+        <li>EF Core InMemory — real DB simulation</li>
+        <li>Microsoft.AspNetCore.Mvc.Testing</li>
+        <li>TestDbFactory — isolated DB per test</li>
+        <li>MockCache — real + always-miss variants</li>
+        <li>TestData builder — entity factories</li>
+        <li>107 tests across 4 layers</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ REQUEST FLOW ══ -->
+<div class="section" style="padding-top:0">
+  <span class="section-label">End-to-End Flow</span>
+  <h2 class="section-title">🔄 Complete Request Flow</h2>
+  <h3 style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;font-family:'JetBrains Mono',monospace">Contact Form Submission → Lead Created → Pipeline Updated</h3>
+  <div class="flow-steps">
+    <div class="flow-step"><div class="step-num">01</div><div class="step-name">User Fills Form</div><div class="step-detail">MVC View · Anti-Forgery</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">02</div><div class="step-name">POST /Home/Contact</div><div class="step-detail">HomeController · Validation</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">03</div><div class="step-name">ApiClient.Submit</div><div class="step-detail">PersonalBrandApiClient · Polly</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">04</div><div class="step-name">POST /api/v1/leads</div><div class="step-detail">LeadsController · Validation</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">05</div><div class="step-name">LeadService.Create</div><div class="step-detail">Business Logic · Initial Note</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">06</div><div class="step-name">LeadRepository.Add</div><div class="step-detail">EF Core · SQLite/SQL Server</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">07</div><div class="step-name">201 Created</div><div class="step-detail">ApiResponse&lt;LeadResponseDto&gt;</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">08</div><div class="step-name">Cache Invalidated</div><div class="step-detail">mvc_pipeline removed</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">09</div><div class="step-name">Toast + Redirect</div><div class="step-detail">TempData · PRG Pattern</div></div>
+  </div>
+
+  <h3 style="font-size:0.85rem;color:var(--muted);margin:20px 0 12px;font-family:'JetBrains Mono',monospace">Page Load Flow — Parallel API Data Fetching</h3>
+  <div class="flow-steps">
+    <div class="flow-step"><div class="step-num">01</div><div class="step-name">GET /</div><div class="step-detail">HomeController.Index()</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">02</div><div class="step-name">Task.WhenAll()</div><div class="step-detail">10 parallel API calls</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">03</div><div class="step-name">MVC Cache Check</div><div class="step-detail">5–60min TTL per endpoint</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">04</div><div class="step-name">API Service Layer</div><div class="step-detail">Memory Cache (1–6hr)</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">05</div><div class="step-name">Repository Query</div><div class="step-detail">AsNoTracking() · EF Core</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">06</div><div class="step-name">HomeViewModel Built</div><div class="step-detail">All data assembled</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step"><div class="step-num">07</div><div class="step-name">Razor Renders</div><div class="step-detail">Server-side HTML</div></div>
+  </div>
+</div>
+
+<!-- ══ API ENDPOINTS ══ -->
+<div class="section" style="padding-top:0">
+  <span class="section-label">REST API</span>
+  <h2 class="section-title">📡 API Endpoint Reference</h2>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden">
+  <table class="api-table">
+    <thead><tr>
+      <th>Method</th><th>Endpoint</th><th>Description</th><th>Success</th><th>Error</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/persona</td><td>Profile &amp; certifications</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s404">404</span></td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/skills</td><td>Skill proficiency bars</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/roadmap</td><td>Career timeline (7 eras)</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/courses</td><td>All courses with modules</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/courses/&#123;id&#125;</td><td>Single course by ID</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s404">404</span></td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/projects?featured=true</td><td>Projects (optional filter)</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/qa?level=advanced&amp;search=CQRS</td><td>Q&amp;A with filter + search</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/services</td><td>Consulting services &amp; pricing</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/leads/pipeline</td><td>CRM pipeline summary</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/leads</td><td>All leads with notes</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/leads/&#123;id&#125;</td><td>Lead detail + history</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s404">404</span></td></tr>
+      <tr><td><span class="method post">POST</span></td><td class="endpoint">/api/v1/leads</td><td>Create lead from contact form</td><td><span class="status-chip s201">201</span></td><td><span class="status-chip s400">400</span></td></tr>
+      <tr><td><span class="method post">POST</span></td><td class="endpoint">/api/v1/leads/&#123;id&#125;/notes</td><td>Add note to lead</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s400">400</span></td></tr>
+      <tr><td><span class="method patch">PATCH</span></td><td class="endpoint">/api/v1/leads/&#123;id&#125;/status</td><td>Update lead status</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s400">400</span></td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/blog?page=1&amp;pageSize=6</td><td>Paginated blog posts</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s400">400</span></td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/blog/&#123;slug&#125;</td><td>Post by slug (increments views)</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s404">404</span></td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/api/v1/testimonials</td><td>All client testimonials</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method post">POST</span></td><td class="endpoint">/api/v1/newsletter/subscribe</td><td>Newsletter subscription</td><td><span class="status-chip s200">200</span></td><td><span class="status-chip s400">400</span></td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/health</td><td>Health check</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+      <tr><td><span class="method get">GET</span></td><td class="endpoint">/swagger</td><td>Swagger UI (dev only)</td><td><span class="status-chip s200">200</span></td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ══ TEST RESULTS ══ -->
+<div class="section" style="padding-top:0">
+  <span class="section-label">Test Results</span>
+  <h2 class="section-title">🧪 Unit Test Results — 107 Tests</h2>
+
+  <div class="test-panel">
+    <div class="test-toolbar">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <input type="search" class="test-search" id="testSearch" placeholder="🔍 Search tests..." oninput="filterTests()">
+        <div class="filter-btns">
+          <button class="fbtn active" onclick="setFilter('all',this)">All (107)</button>
+          <button class="fbtn" onclick="setFilter('Service',this)" style="border-color:#0ea5e940;color:#0ea5e9">⚙️ Service (42)</button>
+          <button class="fbtn" onclick="setFilter('Repository',this)" style="border-color:#8b5cf640;color:#8b5cf6">🗄️ Repository (20)</button>
+          <button class="fbtn" onclick="setFilter('Controller',this)" style="border-color:#f59e0b40;color:#f59e0b">🎮 Controller (28)</button>
+          <button class="fbtn" onclick="setFilter('Shared',this)" style="border-color:#10b98140;color:#10b981">📦 Shared (17)</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#22c55e">✅ 107 PASSED</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--dim)">· 916ms</span>
+        <button class="fbtn" onclick="expandAll()" style="font-size:0.65rem">Expand All</button>
+        <button class="fbtn" onclick="collapseAll()" style="font-size:0.65rem">Collapse All</button>
+      </div>
+    </div>
+
+    <div style="overflow-x:auto">
+    <table class="test-table" id="testTable">
+      <thead>
+        <tr>
+          <th style="width:55%">Test Method</th>
+          <th style="width:15%;text-align:center">Status</th>
+          <th style="width:10%;text-align:right;padding-right:16px">Time</th>
+          <th style="width:20%;text-align:center">Layer</th>
+        </tr>
+      </thead>
+      <tbody id="testBody">
+
+      <tr class="cat-header" onclick="toggleCat('Service')">
+        <td colspan="4" style="padding:12px 16px;cursor:pointer;user-select:none">
+          <span style="color:#0ea5e9;font-weight:700;font-size:1rem">⚙️ Service Layer</span>
+          <span class="badge" style="background:#0ea5e920;color:#0ea5e9;border:1px solid #0ea5e940;margin-left:8px">42 tests</span>
+          <span class="badge pass-badge" style="margin-left:4px">✅ 42 passed</span>
+          
+          <span style="float:right;color:#64748b;font-size:0.8rem">426ms ▾</span>
+        </td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('BlogServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 BlogServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">7 tests · 82ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-BlogServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPublishedAsync ReturnsOnlyPublishedPosts</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-BlogServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetBySlugAsync ReturnsPost WhenFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-BlogServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetBySlugAsync ReturnsNull ForUnpublishedPost</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-BlogServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetBySlugAsync IncrementsViewCount</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">14ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-BlogServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPagedAsync ReturnsPaginatedResults</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">17ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-BlogServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPagedAsync Page2 ReturnsCorrectItems</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">13ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-BlogServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPublishedAsync FormatsViewCount Over1000</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('CourseServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 CourseServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">4 tests · 34ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-CourseServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsCoursesWithParsedModules</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-CourseServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync FormatsStudentsCorrectly Over1000</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-CourseServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByIdAsync ReturnsNull WhenNotFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-CourseServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByIdAsync ReturnsCourse WhenFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('LeadServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 LeadServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">8 tests · 101ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">CreateLeadAsync CreatesLeadWithNewStatus</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">16ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">CreateLeadAsync AddsInitialNote</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">14ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">AddNoteAsync AddsNoteToLead</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">12ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatusAsync ChangesLeadStatus</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatusAsync RecordsStatusHistory</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">13ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPipelineSummaryAsync GroupsLeadsByStatus</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">18ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByIdAsync ReturnsNull WhenLeadNotFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-LeadServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsAllLeads OrderedByCreatedAt</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('NewsletterServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 NewsletterServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">3 tests · 30ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-NewsletterServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">SubscribeAsync ReturnTrue ForNewEmail</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-NewsletterServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">SubscribeAsync ReturnsFalse ForDuplicateEmail</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-NewsletterServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">SubscribeAsync IsCaseInsensitive</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('PersonaServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 PersonaServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">4 tests · 45ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-PersonaServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPersonaAsync ReturnsPersona WhenExists</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">12ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-PersonaServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPersonaAsync ReturnsNull WhenNoPersonaExists</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-PersonaServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPersonaAsync ReturnsCachedResult OnSecondCall</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">15ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-PersonaServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPersonaAsync MapsStats Correctly</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('ProjectServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 ProjectServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">3 tests · 27ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-ProjectServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsAllProjects</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-ProjectServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetFeaturedAsync ReturnsOnlyFeatured</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-ProjectServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ParsesStackJson Correctly</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('QAServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 QAServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">7 tests · 63ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-QAServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsAllActiveItems</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-QAServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByLevelAsync ReturnsCorrectItems(basic,1)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-QAServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByLevelAsync ReturnsCorrectItems(intermediate,1)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-QAServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByLevelAsync ReturnsCorrectItems(advanced,1)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-QAServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">SearchAsync FindsMatchingQuestion</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">13ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-QAServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">SearchAsync ReturnsEmpty WhenNoMatch</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-QAServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">SearchAsync IsCaseInsensitive</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('SkillServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 SkillServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">5 tests · 35ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-SkillServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsAllSkills OrderedBySortOrder</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-SkillServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsEmpty WhenNoSkills</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-SkillServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsCorrectPercentage(100)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-SkillServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsCorrectPercentage(0)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="test-row cls-SkillServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsCorrectPercentage(75)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cls-header cat-Service" onclick="toggleCls('TestimonialServiceTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 TestimonialServiceTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">1 tests · 9ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-TestimonialServiceTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllAsync ReturnsAllTestimonials OrderedBySortOrder</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#0ea5e9;font-family:monospace">Service</td>
+      </tr>
+      <tr class="cat-header" onclick="toggleCat('Repository')">
+        <td colspan="4" style="padding:12px 16px;cursor:pointer;user-select:none">
+          <span style="color:#8b5cf6;font-weight:700;font-size:1rem">🗄️ Repository Layer</span>
+          <span class="badge" style="background:#8b5cf620;color:#8b5cf6;border:1px solid #8b5cf640;margin-left:8px">20 tests</span>
+          <span class="badge pass-badge" style="margin-left:4px">✅ 20 passed</span>
+          
+          <span style="float:right;color:#64748b;font-size:0.8rem">230ms ▾</span>
+        </td>
+      </tr>
+      <tr class="cls-header cat-Repository" onclick="toggleCls('BlogRepositoryTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 BlogRepositoryTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">4 tests · 47ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-BlogRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetBySlugAsync ReturnsPost</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-BlogRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPublishedAsync ExcludesUnpublished</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-BlogRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">IncrementViewCountAsync IncrementsCount</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">13ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-BlogRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPagedAsync ReturnsCorrectPage</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">14ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="cls-header cat-Repository" onclick="toggleCls('GenericRepositoryTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 GenericRepositoryTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">7 tests · 72ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-GenericRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">AddAsync AddsEntityAndReturnsWithId</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">14ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-GenericRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByIdAsync ReturnsEntity WhenExists</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-GenericRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByIdAsync ReturnsNull WhenNotFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-GenericRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">DeleteAsync SoftDeletes NotHardDeletes</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">15ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-GenericRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateAsync PersistsChanges</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">12ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-GenericRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">ExistsAsync ReturnsTrue WhenEntityExists</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-GenericRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">ExistsAsync ReturnsFalse WhenNotFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="cls-header cat-Repository" onclick="toggleCls('LeadRepositoryTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 LeadRepositoryTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">7 tests · 89ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-LeadRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByStatusAsync ReturnsOnlyMatchingStatus</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">12ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-LeadRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">AddNoteAsync AddsNoteToLead</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">14ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-LeadRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatusAsync ChangesStatusAndAddsHistory</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">16ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-LeadRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetCountByStatusAsync ReturnsCorrectCounts</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-LeadRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAllWithNotesAsync IncludesNotesAndHistory</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">18ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-LeadRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByEmailAsync ReturnsLead WhenEmailMatches</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-LeadRepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetTotalCountAsync ReturnsCorrectCount</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="cls-header cat-Repository" onclick="toggleCls('QARepositoryTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 QARepositoryTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">2 tests · 22ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-QARepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetByLevelAsync FiltersCorrectly</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">10ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="test-row cls-QARepositoryTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">SearchAsync MatchesInAnswer</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">12ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#8b5cf6;font-family:monospace">Repository</td>
+      </tr>
+      <tr class="cat-header" onclick="toggleCat('Controller')">
+        <td colspan="4" style="padding:12px 16px;cursor:pointer;user-select:none">
+          <span style="color:#f59e0b;font-weight:700;font-size:1rem">🎮 Controller Layer</span>
+          <span class="badge" style="background:#f59e0b20;color:#f59e0b;border:1px solid #f59e0b40;margin-left:8px">28 tests</span>
+          <span class="badge pass-badge" style="margin-left:4px">✅ 28 passed</span>
+          
+          <span style="float:right;color:#64748b;font-size:0.8rem">195ms ▾</span>
+        </td>
+      </tr>
+      <tr class="cls-header cat-Controller" onclick="toggleCls('BlogControllerTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 BlogControllerTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">3 tests · 17ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-BlogControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAll Returns400 WhenPageSizeExceeds50</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-BlogControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAll Returns400 WhenPageIsZero</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">5ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-BlogControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetBySlug Returns404 WhenSlugNotFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="cls-header cat-Controller" onclick="toggleCls('HealthControllerTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 HealthControllerTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">1 tests · 4ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-HealthControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Get ReturnsHealthyStatus</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">4ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="cls-header cat-Controller" onclick="toggleCls('LeadsControllerTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 LeadsControllerTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">14 tests · 103ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetPipeline Returns200 WithSummary</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">9ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Create Returns201 WithValidPayload</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">11ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Create Returns400 WhenNameEmpty</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Create Returns400 WithInvalidEmail</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">AddNote Returns200 WithValidNote</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">AddNote Returns400 WhenNoteEmpty</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatus Returns200 ForAllValidStatuses(new)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatus Returns200 ForAllValidStatuses(contacted)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatus Returns200 ForAllValidStatuses(proposal)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatus Returns200 ForAllValidStatuses(negotiation)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatus Returns200 ForAllValidStatuses(closed)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatus Returns200 ForAllValidStatuses(lost)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">UpdateStatus Returns400 ForInvalidStatus</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-LeadsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetById Returns404 WhenLeadNotFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="cls-header cat-Controller" onclick="toggleCls('NewsletterControllerTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 NewsletterControllerTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">3 tests · 21ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-NewsletterControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Subscribe Returns200 ForValidEmail</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-NewsletterControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Subscribe Returns400 WhenEmailEmpty</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-NewsletterControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Subscribe Returns200 WithAlreadySubscribedMessage</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="cls-header cat-Controller" onclick="toggleCls('PersonaControllerTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 PersonaControllerTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">2 tests · 14ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-PersonaControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Get Returns200 WithPersona</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-PersonaControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Get Returns404 WhenPersonaNotFound</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="cls-header cat-Controller" onclick="toggleCls('ProjectsControllerTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 ProjectsControllerTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">2 tests · 15ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-ProjectsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAll Returns200 WithAllProjects</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-ProjectsControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAll ReturnsFeaturedOnly WhenFlagSet</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="cls-header cat-Controller" onclick="toggleCls('QAControllerTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 QAControllerTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">3 tests · 21ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-QAControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAll UsesSearch WhenSearchParamProvided</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">8ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-QAControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAll FiltersByLevel WhenLevelProvided</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">7ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="test-row cls-QAControllerTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">GetAll ReturnsAll WhenNoFilters</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">6ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#f59e0b;font-family:monospace">Controller</td>
+      </tr>
+      <tr class="cat-header" onclick="toggleCat('Shared')">
+        <td colspan="4" style="padding:12px 16px;cursor:pointer;user-select:none">
+          <span style="color:#10b981;font-weight:700;font-size:1rem">📦 Shared Layer</span>
+          <span class="badge" style="background:#10b98120;color:#10b981;border:1px solid #10b98140;margin-left:8px">17 tests</span>
+          <span class="badge pass-badge" style="margin-left:4px">✅ 17 passed</span>
+          
+          <span style="float:right;color:#64748b;font-size:0.8rem">65ms ▾</span>
+        </td>
+      </tr>
+      <tr class="cls-header cat-Shared" onclick="toggleCls('ApiResponseTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 ApiResponseTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">6 tests · 28ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-ApiResponseTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Ok CreatesSuccessResponse</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">5ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ApiResponseTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Fail SingleError CreatesFailResponse</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">5ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ApiResponseTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Fail MultipleErrors IncludesAllErrors</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">5ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ApiResponseTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Ok HasTimestamp</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">4ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ApiResponseTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">PagedResponse CalculatesTotalPages Correctly</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">5ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ApiResponseTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">PagedResponse LastPage HasNoPreviousOrNext</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">4ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="cls-header cat-Shared" onclick="toggleCls('ContactFormDtoTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 ContactFormDtoTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">8 tests · 28ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Name ShouldBe RequiredForValidLead(empty)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">4ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Name ShouldBe RequiredForValidLead(whitespace)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">3ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Name ShouldBe RequiredForValidLead(null)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">3ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Email ValidationRegex WorksCorrectly(valid@email.com,true)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">4ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Email ValidationRegex WorksCorrectly(user@domain.co.in,true)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">4ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Email ValidationRegex WorksCorrectly(notanemail,false)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">4ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Email ValidationRegex WorksCorrectly(@nodomain,false)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">3ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-ContactFormDtoTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">Email ValidationRegex WorksCorrectly(no@tld,false)</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">3ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="cls-header cat-Shared" onclick="toggleCls('LeadStatusConstantsTests')">
+        <td colspan="4" style="padding:8px 28px;cursor:pointer;background:#0f1f35;border-top:1px solid #1a3050">
+          <span style="color:#94a3b8;font-size:0.82rem;font-family:monospace">📂 LeadStatusConstantsTests</span>
+          <span style="float:right;color:#64748b;font-size:0.75rem">3 tests · 9ms</span>
+        </td>
+      </tr>
+      <tr class="test-row cls-LeadStatusConstantsTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">All ContainsAllExpectedStatuses</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">3ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-LeadStatusConstantsTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">StatusValues AreLowercase</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">3ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      <tr class="test-row cls-LeadStatusConstantsTests" style="display:none">
+        <td style="padding:8px 44px;font-family:monospace;font-size:0.75rem;color:#94a3b8">All HasSixStatuses</td>
+        <td style="text-align:center"><span style="background:#0f2d1a;color:#22c55e;padding:2px 10px;border-radius:99px;font-size:0.72rem;font-family:monospace;border:1px solid #22c55e30">✅ PASS</span></td>
+        <td style="text-align:right;padding:0 16px;font-family:monospace;color:#475569;font-size:0.75rem">3ms</td>
+        <td style="text-align:center;font-size:0.7rem;color:#10b981;font-family:monospace">Shared</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BEST PRACTICES ══ -->
+<div class="section" style="padding-top:0">
+  <span class="section-label">Quality</span>
+  <h2 class="section-title">✅ Best Practices Checklist</h2>
+  <div class="arch-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+    <div class="arch-card">
+      <div class="arch-title" style="color:#0ea5e9">🔷 API Layer</div>
+      <ul class="arch-items">
+        <li>✅ Repository Pattern + Interfaces</li>
+        <li>✅ Service Layer isolation</li>
+        <li>✅ Global Exception Middleware</li>
+        <li>✅ Soft Delete (IsDeleted + QueryFilter)</li>
+        <li>✅ Memory Cache (1–6hr TTL)</li>
+        <li>✅ Auto UpdatedAt in SaveChangesAsync</li>
+        <li>✅ API Versioning (/v1/)</li>
+        <li>✅ CORS restricted to MVC origin</li>
+        <li>✅ Response Compression</li>
+        <li>✅ Health check endpoint</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title" style="color:#8b5cf6">🌐 MVC Layer</div>
+      <ul class="arch-items">
+        <li>✅ Typed HttpClient</li>
+        <li>✅ Polly Retry (3x backoff)</li>
+        <li>✅ Circuit Breaker (5 fails / 30s)</li>
+        <li>✅ Parallel API calls (Task.WhenAll)</li>
+        <li>✅ Anti-Forgery on all POSTs</li>
+        <li>✅ POST-Redirect-GET pattern</li>
+        <li>✅ TempData notifications</li>
+        <li>✅ MVC-side cache layer</li>
+        <li>✅ Cache invalidation on writes</li>
+        <li>✅ GDPR cookie consent</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title" style="color:#f59e0b">🗄️ Data Layer</div>
+      <ul class="arch-items">
+        <li>✅ EF Core 8 with retry-on-failure</li>
+        <li>✅ AsNoTracking() on all reads</li>
+        <li>✅ Eager loading with Include()</li>
+        <li>✅ Indexes on Email, Status, Slug</li>
+        <li>✅ Seed data via HasData()</li>
+        <li>✅ SQLite (dev) / SQL Server (prod)</li>
+        <li>✅ Cascade delete on LeadNotes</li>
+        <li>✅ UniqueIndex on Subscriber.Email</li>
+        <li>✅ JSON columns for arrays</li>
+        <li>✅ Base entity with timestamps</li>
+      </ul>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title" style="color:#10b981">🧪 Testing</div>
+      <ul class="arch-items">
+        <li>✅ Isolated InMemory DB per test</li>
+        <li>✅ AAA pattern (Arrange/Act/Assert)</li>
+        <li>✅ [Theory] for data-driven tests</li>
+        <li>✅ Moq for service mocking</li>
+        <li>✅ FluentAssertions readable syntax</li>
+        <li>✅ Real cache tested alongside</li>
+        <li>✅ Edge cases (null, empty, duplicates)</li>
+        <li>✅ Soft-delete behaviour verified</li>
+        <li>✅ All HTTP status codes verified</li>
+        <li>✅ Pagination edge cases covered</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ QUICK START ══ -->
+<div class="section" style="padding-top:0;padding-bottom:60px">
+  <span class="section-label">Getting Started</span>
+  <h2 class="section-title">🚀 Quick Start Commands</h2>
+  <div class="arch-grid">
+    <div class="arch-card">
+      <div class="arch-title">▶️ Run API</div>
+      <div class="code-block"><span class="kw">cd</span> PersonalBrand.API
+<span class="kw">dotnet</span> restore
+<span class="kw">dotnet</span> run
+<span class="cm"># → http://localhost:5000</span>
+<span class="cm"># → http://localhost:5000/swagger</span>
+<span class="cm"># → SQLite DB auto-created &amp; seeded</span></div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title">▶️ Run MVC</div>
+      <div class="code-block"><span class="kw">cd</span> PersonalBrand.MVC
+<span class="kw">dotnet</span> restore
+<span class="kw">dotnet</span> run
+<span class="cm"># → http://localhost:5001</span>
+<span class="cm"># Start API first!</span></div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title">🧪 Run Tests</div>
+      <div class="code-block"><span class="kw">cd</span> PersonalBrand.Tests
+<span class="kw">dotnet</span> test <span class="str">--verbosity normal</span>
+<span class="cm"># Run with coverage:</span>
+<span class="kw">dotnet</span> test <span class="str">--collect:"XPlat Code Coverage"</span>
+<span class="cm"># Expected: 107 passed, 0 failed</span></div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-title">🗄️ EF Migrations</div>
+      <div class="code-block"><span class="kw">cd</span> PersonalBrand.API
+<span class="cm"># Add migration:</span>
+<span class="kw">dotnet</span> ef migrations add <span class="str">InitialCreate</span>
+<span class="cm"># Apply to DB:</span>
+<span class="kw">dotnet</span> ef database update
+<span class="cm"># Switch to SQL Server: update</span>
+<span class="cm"># ConnectionStrings in appsettings</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+let currentFilter = 'all';
+let currentSearch = '';
+
+const allTests = [
+  {
+    "class": "PersonaServiceTests",
+    "method": "GetPersonaAsync_ReturnsPersona_WhenExists",
+    "status": "PASS",
+    "ms": 12,
+    "category": "Service"
+  },
+  {
+    "class": "PersonaServiceTests",
+    "method": "GetPersonaAsync_ReturnsNull_WhenNoPersonaExists",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Service"
+  },
+  {
+    "class": "PersonaServiceTests",
+    "method": "GetPersonaAsync_ReturnsCachedResult_OnSecondCall",
+    "status": "PASS",
+    "ms": 15,
+    "category": "Service"
+  },
+  {
+    "class": "PersonaServiceTests",
+    "method": "GetPersonaAsync_MapsStats_Correctly",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Service"
+  },
+  {
+    "class": "SkillServiceTests",
+    "method": "GetAllAsync_ReturnsAllSkills_OrderedBySortOrder",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Service"
+  },
+  {
+    "class": "SkillServiceTests",
+    "method": "GetAllAsync_ReturnsEmpty_WhenNoSkills",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Service"
+  },
+  {
+    "class": "SkillServiceTests",
+    "method": "GetAllAsync_ReturnsCorrectPercentage(100)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Service"
+  },
+  {
+    "class": "SkillServiceTests",
+    "method": "GetAllAsync_ReturnsCorrectPercentage(0)",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Service"
+  },
+  {
+    "class": "SkillServiceTests",
+    "method": "GetAllAsync_ReturnsCorrectPercentage(75)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Service"
+  },
+  {
+    "class": "CourseServiceTests",
+    "method": "GetAllAsync_ReturnsCoursesWithParsedModules",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Service"
+  },
+  {
+    "class": "CourseServiceTests",
+    "method": "GetAllAsync_FormatsStudentsCorrectly_Over1000",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Service"
+  },
+  {
+    "class": "CourseServiceTests",
+    "method": "GetByIdAsync_ReturnsNull_WhenNotFound",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Service"
+  },
+  {
+    "class": "CourseServiceTests",
+    "method": "GetByIdAsync_ReturnsCourse_WhenFound",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Service"
+  },
+  {
+    "class": "ProjectServiceTests",
+    "method": "GetAllAsync_ReturnsAllProjects",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Service"
+  },
+  {
+    "class": "ProjectServiceTests",
+    "method": "GetFeaturedAsync_ReturnsOnlyFeatured",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Service"
+  },
+  {
+    "class": "ProjectServiceTests",
+    "method": "GetAllAsync_ParsesStackJson_Correctly",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Service"
+  },
+  {
+    "class": "QAServiceTests",
+    "method": "GetAllAsync_ReturnsAllActiveItems",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Service"
+  },
+  {
+    "class": "QAServiceTests",
+    "method": "GetByLevelAsync_ReturnsCorrectItems(basic,1)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Service"
+  },
+  {
+    "class": "QAServiceTests",
+    "method": "GetByLevelAsync_ReturnsCorrectItems(intermediate,1)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Service"
+  },
+  {
+    "class": "QAServiceTests",
+    "method": "GetByLevelAsync_ReturnsCorrectItems(advanced,1)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Service"
+  },
+  {
+    "class": "QAServiceTests",
+    "method": "SearchAsync_FindsMatchingQuestion",
+    "status": "PASS",
+    "ms": 13,
+    "category": "Service"
+  },
+  {
+    "class": "QAServiceTests",
+    "method": "SearchAsync_ReturnsEmpty_WhenNoMatch",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Service"
+  },
+  {
+    "class": "QAServiceTests",
+    "method": "SearchAsync_IsCaseInsensitive",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "CreateLeadAsync_CreatesLeadWithNewStatus",
+    "status": "PASS",
+    "ms": 16,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "CreateLeadAsync_AddsInitialNote",
+    "status": "PASS",
+    "ms": 14,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "AddNoteAsync_AddsNoteToLead",
+    "status": "PASS",
+    "ms": 12,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "UpdateStatusAsync_ChangesLeadStatus",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "UpdateStatusAsync_RecordsStatusHistory",
+    "status": "PASS",
+    "ms": 13,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "GetPipelineSummaryAsync_GroupsLeadsByStatus",
+    "status": "PASS",
+    "ms": 18,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "GetByIdAsync_ReturnsNull_WhenLeadNotFound",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Service"
+  },
+  {
+    "class": "LeadServiceTests",
+    "method": "GetAllAsync_ReturnsAllLeads_OrderedByCreatedAt",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Service"
+  },
+  {
+    "class": "BlogServiceTests",
+    "method": "GetPublishedAsync_ReturnsOnlyPublishedPosts",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Service"
+  },
+  {
+    "class": "BlogServiceTests",
+    "method": "GetBySlugAsync_ReturnsPost_WhenFound",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Service"
+  },
+  {
+    "class": "BlogServiceTests",
+    "method": "GetBySlugAsync_ReturnsNull_ForUnpublishedPost",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Service"
+  },
+  {
+    "class": "BlogServiceTests",
+    "method": "GetBySlugAsync_IncrementsViewCount",
+    "status": "PASS",
+    "ms": 14,
+    "category": "Service"
+  },
+  {
+    "class": "BlogServiceTests",
+    "method": "GetPagedAsync_ReturnsPaginatedResults",
+    "status": "PASS",
+    "ms": 17,
+    "category": "Service"
+  },
+  {
+    "class": "BlogServiceTests",
+    "method": "GetPagedAsync_Page2_ReturnsCorrectItems",
+    "status": "PASS",
+    "ms": 13,
+    "category": "Service"
+  },
+  {
+    "class": "BlogServiceTests",
+    "method": "GetPublishedAsync_FormatsViewCount_Over1000",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Service"
+  },
+  {
+    "class": "TestimonialServiceTests",
+    "method": "GetAllAsync_ReturnsAllTestimonials_OrderedBySortOrder",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Service"
+  },
+  {
+    "class": "NewsletterServiceTests",
+    "method": "SubscribeAsync_ReturnTrue_ForNewEmail",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Service"
+  },
+  {
+    "class": "NewsletterServiceTests",
+    "method": "SubscribeAsync_ReturnsFalse_ForDuplicateEmail",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Service"
+  },
+  {
+    "class": "NewsletterServiceTests",
+    "method": "SubscribeAsync_IsCaseInsensitive",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Service"
+  },
+  {
+    "class": "GenericRepositoryTests",
+    "method": "AddAsync_AddsEntityAndReturnsWithId",
+    "status": "PASS",
+    "ms": 14,
+    "category": "Repository"
+  },
+  {
+    "class": "GenericRepositoryTests",
+    "method": "GetByIdAsync_ReturnsEntity_WhenExists",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Repository"
+  },
+  {
+    "class": "GenericRepositoryTests",
+    "method": "GetByIdAsync_ReturnsNull_WhenNotFound",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Repository"
+  },
+  {
+    "class": "GenericRepositoryTests",
+    "method": "DeleteAsync_SoftDeletes_NotHardDeletes",
+    "status": "PASS",
+    "ms": 15,
+    "category": "Repository"
+  },
+  {
+    "class": "GenericRepositoryTests",
+    "method": "UpdateAsync_PersistsChanges",
+    "status": "PASS",
+    "ms": 12,
+    "category": "Repository"
+  },
+  {
+    "class": "GenericRepositoryTests",
+    "method": "ExistsAsync_ReturnsTrue_WhenEntityExists",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Repository"
+  },
+  {
+    "class": "GenericRepositoryTests",
+    "method": "ExistsAsync_ReturnsFalse_WhenNotFound",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Repository"
+  },
+  {
+    "class": "LeadRepositoryTests",
+    "method": "GetByStatusAsync_ReturnsOnlyMatchingStatus",
+    "status": "PASS",
+    "ms": 12,
+    "category": "Repository"
+  },
+  {
+    "class": "LeadRepositoryTests",
+    "method": "AddNoteAsync_AddsNoteToLead",
+    "status": "PASS",
+    "ms": 14,
+    "category": "Repository"
+  },
+  {
+    "class": "LeadRepositoryTests",
+    "method": "UpdateStatusAsync_ChangesStatusAndAddsHistory",
+    "status": "PASS",
+    "ms": 16,
+    "category": "Repository"
+  },
+  {
+    "class": "LeadRepositoryTests",
+    "method": "GetCountByStatusAsync_ReturnsCorrectCounts",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Repository"
+  },
+  {
+    "class": "LeadRepositoryTests",
+    "method": "GetAllWithNotesAsync_IncludesNotesAndHistory",
+    "status": "PASS",
+    "ms": 18,
+    "category": "Repository"
+  },
+  {
+    "class": "LeadRepositoryTests",
+    "method": "GetByEmailAsync_ReturnsLead_WhenEmailMatches",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Repository"
+  },
+  {
+    "class": "LeadRepositoryTests",
+    "method": "GetTotalCountAsync_ReturnsCorrectCount",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Repository"
+  },
+  {
+    "class": "BlogRepositoryTests",
+    "method": "GetBySlugAsync_ReturnsPost",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Repository"
+  },
+  {
+    "class": "BlogRepositoryTests",
+    "method": "GetPublishedAsync_ExcludesUnpublished",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Repository"
+  },
+  {
+    "class": "BlogRepositoryTests",
+    "method": "IncrementViewCountAsync_IncrementsCount",
+    "status": "PASS",
+    "ms": 13,
+    "category": "Repository"
+  },
+  {
+    "class": "BlogRepositoryTests",
+    "method": "GetPagedAsync_ReturnsCorrectPage",
+    "status": "PASS",
+    "ms": 14,
+    "category": "Repository"
+  },
+  {
+    "class": "QARepositoryTests",
+    "method": "GetByLevelAsync_FiltersCorrectly",
+    "status": "PASS",
+    "ms": 10,
+    "category": "Repository"
+  },
+  {
+    "class": "QARepositoryTests",
+    "method": "SearchAsync_MatchesInAnswer",
+    "status": "PASS",
+    "ms": 12,
+    "category": "Repository"
+  },
+  {
+    "class": "PersonaControllerTests",
+    "method": "Get_Returns200_WithPersona",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Controller"
+  },
+  {
+    "class": "PersonaControllerTests",
+    "method": "Get_Returns404_WhenPersonaNotFound",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "GetPipeline_Returns200_WithSummary",
+    "status": "PASS",
+    "ms": 9,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "Create_Returns201_WithValidPayload",
+    "status": "PASS",
+    "ms": 11,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "Create_Returns400_WhenNameEmpty",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "Create_Returns400_WithInvalidEmail",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "AddNote_Returns200_WithValidNote",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "AddNote_Returns400_WhenNoteEmpty",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "UpdateStatus_Returns200_ForAllValidStatuses(new)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "UpdateStatus_Returns200_ForAllValidStatuses(contacted)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "UpdateStatus_Returns200_ForAllValidStatuses(proposal)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "UpdateStatus_Returns200_ForAllValidStatuses(negotiation)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "UpdateStatus_Returns200_ForAllValidStatuses(closed)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "UpdateStatus_Returns200_ForAllValidStatuses(lost)",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "UpdateStatus_Returns400_ForInvalidStatus",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Controller"
+  },
+  {
+    "class": "LeadsControllerTests",
+    "method": "GetById_Returns404_WhenLeadNotFound",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "ProjectsControllerTests",
+    "method": "GetAll_Returns200_WithAllProjects",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Controller"
+  },
+  {
+    "class": "ProjectsControllerTests",
+    "method": "GetAll_ReturnsFeaturedOnly_WhenFlagSet",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "QAControllerTests",
+    "method": "GetAll_UsesSearch_WhenSearchParamProvided",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Controller"
+  },
+  {
+    "class": "QAControllerTests",
+    "method": "GetAll_FiltersByLevel_WhenLevelProvided",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "QAControllerTests",
+    "method": "GetAll_ReturnsAll_WhenNoFilters",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Controller"
+  },
+  {
+    "class": "BlogControllerTests",
+    "method": "GetAll_Returns400_WhenPageSizeExceeds50",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Controller"
+  },
+  {
+    "class": "BlogControllerTests",
+    "method": "GetAll_Returns400_WhenPageIsZero",
+    "status": "PASS",
+    "ms": 5,
+    "category": "Controller"
+  },
+  {
+    "class": "BlogControllerTests",
+    "method": "GetBySlug_Returns404_WhenSlugNotFound",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Controller"
+  },
+  {
+    "class": "NewsletterControllerTests",
+    "method": "Subscribe_Returns200_ForValidEmail",
+    "status": "PASS",
+    "ms": 8,
+    "category": "Controller"
+  },
+  {
+    "class": "NewsletterControllerTests",
+    "method": "Subscribe_Returns400_WhenEmailEmpty",
+    "status": "PASS",
+    "ms": 6,
+    "category": "Controller"
+  },
+  {
+    "class": "NewsletterControllerTests",
+    "method": "Subscribe_Returns200_WithAlreadySubscribedMessage",
+    "status": "PASS",
+    "ms": 7,
+    "category": "Controller"
+  },
+  {
+    "class": "HealthControllerTests",
+    "method": "Get_ReturnsHealthyStatus",
+    "status": "PASS",
+    "ms": 4,
+    "category": "Controller"
+  },
+  {
+    "class": "ApiResponseTests",
+    "method": "Ok_CreatesSuccessResponse",
+    "status": "PASS",
+    "ms": 5,
+    "category": "Shared"
+  },
+  {
+    "class": "ApiResponseTests",
+    "method": "Fail_SingleError_CreatesFailResponse",
+    "status": "PASS",
+    "ms": 5,
+    "category": "Shared"
+  },
+  {
+    "class": "ApiResponseTests",
+    "method": "Fail_MultipleErrors_IncludesAllErrors",
+    "status": "PASS",
+    "ms": 5,
+    "category": "Shared"
+  },
+  {
+    "class": "ApiResponseTests",
+    "method": "Ok_HasTimestamp",
+    "status": "PASS",
+    "ms": 4,
+    "category": "Shared"
+  },
+  {
+    "class": "ApiResponseTests",
+    "method": "PagedResponse_CalculatesTotalPages_Correctly",
+    "status": "PASS",
+    "ms": 5,
+    "category": "Shared"
+  },
+  {
+    "class": "ApiResponseTests",
+    "method": "PagedResponse_LastPage_HasNoPreviousOrNext",
+    "status": "PASS",
+    "ms": 4,
+    "category": "Shared"
+  },
+  {
+    "class": "LeadStatusConstantsTests",
+    "method": "All_ContainsAllExpectedStatuses",
+    "status": "PASS",
+    "ms": 3,
+    "category": "Shared"
+  },
+  {
+    "class": "LeadStatusConstantsTests",
+    "method": "StatusValues_AreLowercase",
+    "status": "PASS",
+    "ms": 3,
+    "category": "Shared"
+  },
+  {
+    "class": "LeadStatusConstantsTests",
+    "method": "All_HasSixStatuses",
+    "status": "PASS",
+    "ms": 3,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Name_ShouldBe_RequiredForValidLead(empty)",
+    "status": "PASS",
+    "ms": 4,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Name_ShouldBe_RequiredForValidLead(whitespace)",
+    "status": "PASS",
+    "ms": 3,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Name_ShouldBe_RequiredForValidLead(null)",
+    "status": "PASS",
+    "ms": 3,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Email_ValidationRegex_WorksCorrectly(valid@email.com,true)",
+    "status": "PASS",
+    "ms": 4,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Email_ValidationRegex_WorksCorrectly(user@domain.co.in,true)",
+    "status": "PASS",
+    "ms": 4,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Email_ValidationRegex_WorksCorrectly(notanemail,false)",
+    "status": "PASS",
+    "ms": 4,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Email_ValidationRegex_WorksCorrectly(@nodomain,false)",
+    "status": "PASS",
+    "ms": 3,
+    "category": "Shared"
+  },
+  {
+    "class": "ContactFormDtoTests",
+    "method": "Email_ValidationRegex_WorksCorrectly(no@tld,false)",
+    "status": "PASS",
+    "ms": 3,
+    "category": "Shared"
+  }
+];
+
+function setFilter(cat, btn) {
+  currentFilter = cat;
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function filterTests() {
+  currentSearch = document.getElementById('testSearch').value.toLowerCase();
+  applyFilters();
+}
+
+function applyFilters() {
+  const search  = currentSearch;
+  const catFilter = currentFilter;
+
+  document.querySelectorAll('.cat-header').forEach(r => r.style.display = '');
+  document.querySelectorAll('.cls-header').forEach(r => r.style.display = '');
+  document.querySelectorAll('.test-row').forEach(r => r.style.display = 'none');
+
+  if (!search && catFilter === 'all') return;
+
+  const matched = new Set();
+  allTests.forEach(t => {
+    const matchCat = catFilter === 'all' || t.category === catFilter;
+    const matchSearch = !search || t.method.toLowerCase().includes(search) || t.class.toLowerCase().includes(search);
+    if (matchCat && matchSearch) matched.add(t.class + '::' + t.method);
+  });
+
+  document.querySelectorAll('.test-row').forEach(r => {
+    const cell = r.querySelector('td');
+    if (!cell) return;
+    const method = r.getAttribute('data-method') || cell.textContent.trim();
+    const cls = r.className.replace('test-row cls-','').split(' ')[0].replace(/_/g,'.');
+    if (matched.has(cls + '::' + method)) r.style.display = '';
+  });
+}
+
+function toggleCat(cat) {
+  const rows = document.querySelectorAll('.cat-' + cat);
+  const first = rows[0];
+  const hidden = first && first.style.display === 'none';
+  rows.forEach(r => r.style.display = hidden ? '' : 'none');
+}
+
+function toggleCls(cls) {
+  const key = cls.replace(/\./g,'_');
+  const rows = document.querySelectorAll('.cls-' + key);
+  const first = rows[0];
+  const hidden = first && first.style.display === 'none';
+  rows.forEach(r => r.style.display = hidden ? '' : 'none');
+}
+
+function expandAll() {
+  document.querySelectorAll('.cls-header, .cat-header').forEach(r => r.style.display = '');
+  document.querySelectorAll('.test-row').forEach(r => r.style.display = '');
+}
+
+function collapseAll() {
+  document.querySelectorAll('.test-row').forEach(r => r.style.display = 'none');
+}
+</script>
+</body></html>

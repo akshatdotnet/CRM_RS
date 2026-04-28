@@ -1,0 +1,114 @@
+@model LeadFormViewModel
+@{ ViewData["Title"] = "Edit Lead"; ViewData["Breadcrumb"] = "Edit Lead"; }
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0 fw-semibold">Edit Lead — @Model.FullName</h4>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
+</div>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    @Html.AntiForgeryToken()
+    <div class="row g-3">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h6 class="fw-semibold mb-3 text-muted" style="font-size:12px;text-transform:uppercase;">Personal Details</h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                            <input asp-for="FullName" class="form-control" />
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone <span class="text-danger">*</span></label>
+                            <input asp-for="Phone" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Lead Source</label>
+                            <select asp-for="LeadSource" class="form-select">
+                                @foreach (var src in new[]{"99acres","MagicBricks","Referral","Walk-in","Website","Housing.com","Other"})
+                                { <option>@src</option> }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h6 class="fw-semibold mb-3 text-muted" style="font-size:12px;text-transform:uppercase;">Property Interest</h6>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Property Type</label>
+                            <select asp-for="PropertyType" class="form-select">
+                                @foreach (var t in new[]{"1BHK","2BHK","3BHK","4BHK","5BHK","Villa","Plot","Commercial","Penthouse"})
+                                { <option>@t</option> }
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Location</label>
+                            <input asp-for="LocationPreference" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Budget Min (₹)</label>
+                            <input asp-for="BudgetMin" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Budget Max (₹)</label>
+                            <input asp-for="BudgetMax" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <label class="form-label fw-semibold">Notes</label>
+                    <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm mb-3">
+                <div class="card-body">
+                    <h6 class="fw-semibold mb-3 text-muted" style="font-size:12px;text-transform:uppercase;">Stage & Assignment</h6>
+                    <div class="mb-3">
+                        <label class="form-label">Current Stage</label>
+                        <select asp-for="Stage" class="form-select">
+                            @foreach (var s in new[]{"New","Contacted","Site Visit","Negotiation","Closed","Lost"})
+                            { <option>@s</option> }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Assigned Agent</label>
+                        <select asp-for="AgentId" class="form-select">
+                            @foreach (var a in Model.Agents)
+                            { <option value="@a.Id">@a.FullName</option> }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Follow-up Deadline</label>
+                        <input asp-for="FollowUpDeadline" type="date" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Close By Date</label>
+                        <input asp-for="CloseByDate" type="date" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
+                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

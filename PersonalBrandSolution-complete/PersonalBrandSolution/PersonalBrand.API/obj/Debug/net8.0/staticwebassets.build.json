@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "s8JjWHvjn7DDOjSLQemOO4Y3+ZSc7jY4ke0ZXNNj1WY=",
+  "Source": "PersonalBrand.API",
+  "BasePath": "_content/PersonalBrand.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

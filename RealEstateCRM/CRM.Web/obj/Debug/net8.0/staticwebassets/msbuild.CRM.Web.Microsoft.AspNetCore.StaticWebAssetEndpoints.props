@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/CRM.Web/css/site.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-0LwPB2No4hU\u002BHjM2m7cHi246hX2OR06lvxJs\u002BIEYdH8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2450"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00220LwPB2No4hU\u002BHjM2m7cHi246hX2OR06lvxJs\u002BIEYdH8=\u0022"},{"Name":"Last-Modified","Value":"Tue, 21 Apr 2026 08:37:59 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CRM.Web/css/site.oecszbsjxg.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"oecszbsjxg"},{"Name":"integrity","Value":"sha256-0LwPB2No4hU\u002BHjM2m7cHi246hX2OR06lvxJs\u002BIEYdH8="},{"Name":"label","Value":"_content/CRM.Web/css/site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2450"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00220LwPB2No4hU\u002BHjM2m7cHi246hX2OR06lvxJs\u002BIEYdH8=\u0022"},{"Name":"Last-Modified","Value":"Tue, 21 Apr 2026 08:37:59 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CRM.Web/js/site.ehi6obz96s.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ehi6obz96s"},{"Name":"integrity","Value":"sha256-EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4="},{"Name":"label","Value":"_content/CRM.Web/js/site.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1108"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4=\u0022"},{"Name":"Last-Modified","Value":"Tue, 21 Apr 2026 08:37:59 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/CRM.Web/js/site.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1108"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022EjfmKX5ndeNXIGp2urQKQOg6eBkDuXhDs2nUFKWwfJ4=\u0022"},{"Name":"Last-Modified","Value":"Tue, 21 Apr 2026 08:37:59 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>
