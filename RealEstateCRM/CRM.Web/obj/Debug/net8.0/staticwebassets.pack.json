@@ -1,11 +1,11 @@
 {
   "Files": [
     {
-      "Id": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\css\\site.css",
+      "Id": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\wwwroot\\js\\site.js",
+      "Id": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {

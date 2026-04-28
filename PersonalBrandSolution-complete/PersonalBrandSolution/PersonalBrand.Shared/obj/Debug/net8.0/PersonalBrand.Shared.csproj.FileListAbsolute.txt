@@ -20,3 +20,15 @@ D:\Client_Project\Temp\files\PersonalBrandSolution-complete\PersonalBrandSolutio
 D:\Client_Project\Temp\files\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\refint\PersonalBrand.Shared.dll
 D:\Client_Project\Temp\files\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.pdb
 D:\Client_Project\Temp\files\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\ref\PersonalBrand.Shared.dll
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\bin\Debug\net8.0\PersonalBrand.Shared.deps.json
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\bin\Debug\net8.0\PersonalBrand.Shared.dll
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\bin\Debug\net8.0\PersonalBrand.Shared.pdb
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.AssemblyInfoInputs.cache
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.AssemblyInfo.cs
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.csproj.CoreCompileInputs.cache
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.sourcelink.json
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.dll
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\refint\PersonalBrand.Shared.dll
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\PersonalBrand.Shared.pdb
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.Shared\obj\Debug\net8.0\ref\PersonalBrand.Shared.dll

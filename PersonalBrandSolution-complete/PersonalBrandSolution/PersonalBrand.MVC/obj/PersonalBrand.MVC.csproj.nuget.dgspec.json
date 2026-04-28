@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj": {}
+    "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj": {}
   },
   "projects": {
-    "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj": {
+    "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj",
+        "projectUniqueName": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj",
         "projectName": "PersonalBrand.MVC",
-        "projectPath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj",
+        "projectPath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj",
         "packagesPath": "C:\\Users\\aksha\\.nuget\\packages\\",
-        "outputPath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\obj\\",
+        "outputPath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj": {
-                "projectPath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj"
+              "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj": {
+                "projectPath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj"
               }
             }
           }
@@ -102,14 +102,14 @@
         }
       }
     },
-    "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj": {
+    "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj",
+        "projectUniqueName": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj",
         "projectName": "PersonalBrand.Shared",
-        "projectPath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj",
+        "projectPath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\PersonalBrand.Shared.csproj",
         "packagesPath": "C:\\Users\\aksha\\.nuget\\packages\\",
-        "outputPath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\obj\\",
+        "outputPath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

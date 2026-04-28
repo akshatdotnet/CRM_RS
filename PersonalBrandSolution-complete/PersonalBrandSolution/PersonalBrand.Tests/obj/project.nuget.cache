@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y07Fmzd0sts=",
+  "dgSpecHash": "SBEgrk31ZlY=",
   "success": true,
-  "projectFilePath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Tests\\PersonalBrand.Tests.csproj",
+  "projectFilePath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Tests\\PersonalBrand.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aksha\\.nuget\\packages\\asp.versioning.abstractions\\8.1.0\\asp.versioning.abstractions.8.1.0.nupkg.sha512",
     "C:\\Users\\aksha\\.nuget\\packages\\asp.versioning.http\\8.1.0\\asp.versioning.http.8.1.0.nupkg.sha512",

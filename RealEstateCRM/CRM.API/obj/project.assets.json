@@ -4662,11 +4662,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.API\\CRM.API.csproj",
+      "projectUniqueName": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.API\\CRM.API.csproj",
       "projectName": "CRM.API",
-      "projectPath": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.API\\CRM.API.csproj",
+      "projectPath": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.API\\CRM.API.csproj",
       "packagesPath": "C:\\Users\\aksha\\.nuget\\packages\\",
-      "outputPath": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.API\\obj\\",
+      "outputPath": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4687,11 +4687,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Core\\CRM.Core.csproj": {
-              "projectPath": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Core\\CRM.Core.csproj"
+            "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Core\\CRM.Core.csproj": {
+              "projectPath": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Core\\CRM.Core.csproj"
             },
-            "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj": {
-              "projectPath": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj"
+            "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj": {
+              "projectPath": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj"
             }
           }
         }

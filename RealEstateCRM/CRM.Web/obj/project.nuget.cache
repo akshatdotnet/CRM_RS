@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o086sSuSrjo=",
+  "dgSpecHash": "gxHMX74iOvI=",
   "success": true,
-  "projectFilePath": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\CRM.Web.csproj",
+  "projectFilePath": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\CRM.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aksha\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\aksha\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

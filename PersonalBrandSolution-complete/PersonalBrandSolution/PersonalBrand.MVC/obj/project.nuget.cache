@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aoXyexbXv7M=",
+  "dgSpecHash": "c/vV8jp7TKA=",
   "success": true,
-  "projectFilePath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj",
+  "projectFilePath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\PersonalBrand.MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aksha\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\aksha\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\8.0.0\\microsoft.aspnetcore.mvc.razor.runtimecompilation.8.0.0.nupkg.sha512",

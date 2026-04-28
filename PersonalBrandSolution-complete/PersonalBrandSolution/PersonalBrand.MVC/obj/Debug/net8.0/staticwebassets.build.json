@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sBPKK72KRQm2SxWKhV5ViswkH4yKHpJApUoTIJPbHIM=",
+  "Hash": "Ve/s17spO0J6ok+fRM/Si0nKFJGrLN5qysywlrdPhAg=",
   "Source": "PersonalBrand.MVC",
   "BasePath": "_content/PersonalBrand.MVC",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "PersonalBrand.MVC\\wwwroot",
       "Source": "PersonalBrand.MVC",
-      "ContentRoot": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
+      "ContentRoot": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
       "BasePath": "_content/PersonalBrand.MVC",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
+      "Identity": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
       "SourceId": "PersonalBrand.MVC",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
+      "ContentRoot": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
       "BasePath": "_content/PersonalBrand.MVC",
       "RelativePath": "css/site#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -38,10 +38,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
+      "Identity": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
       "SourceId": "PersonalBrand.MVC",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
+      "ContentRoot": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\",
       "BasePath": "_content/PersonalBrand.MVC",
       "RelativePath": "js/site#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -62,7 +62,7 @@
   "Endpoints": [
     {
       "Route": "css/site.css",
-      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
+      "AssetFile": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -99,7 +99,7 @@
     },
     {
       "Route": "css/site.fe4erlr7bl.css",
-      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
+      "AssetFile": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -144,7 +144,7 @@
     },
     {
       "Route": "js/site.0n4b6k6cvd.js",
-      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
+      "AssetFile": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -189,7 +189,7 @@
     },
     {
       "Route": "js/site.js",
-      "AssetFile": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
+      "AssetFile": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
