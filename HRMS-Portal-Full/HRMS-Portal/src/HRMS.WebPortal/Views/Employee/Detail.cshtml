@@ -1,0 +1,66 @@
+@model HRMS.WebPortal.Models.Employee.EmployeeDetailViewModel
+@{ ViewData["Title"] = Model.FullName; ViewData["ActiveNav"] = "Employee"; ViewData["PageTitle"] = "Employee Detail"; }
+
+<div class="page-header">
+  <div><a href="/Employee" style="color:var(--text-muted);font-size:13px;"><i class="bi bi-arrow-left"></i> Back to Employees</a></div>
+  @if (User.IsInRole("Admin") || User.IsInRole("HR")) {
+    <div class="action-row">
+      <a href="/Salary/Generate?employeeId=@Model.Id" class="btn btn-secondary"><i class="bi bi-cash-coin"></i> Generate Slip</a>
+      <a href="/Document/Index?employeeId=@Model.Id&employeeName=@Uri.EscapeDataString(Model.FullName)" class="btn btn-primary"><i class="bi bi-file-earmark-text"></i> Documents</a>
+    </div>
+  }
+</div>
+
+<div class="card" style="margin-bottom:20px;">
+  <div class="card-body">
+    <div class="emp-header">
+      <div class="emp-avatar-lg">@Model.FullName.Substring(0,1)</div>
+      <div class="emp-header-info">
+        <h2>@Model.FullName</h2>
+        <p>@Model.Designation &bull; @Model.Department</p>
+        <div class="emp-header-meta">
+          <span class="mono" style="font-size:12px;color:var(--text-muted);">@Model.EmployeeCode</span>
+          @{ var bc = Model.Status switch { "Active" => "badge-active","OnNotice" => "badge-notice","Resigned" => "badge-resigned",_ => "badge-terminated" }; }
+          <span class="badge @bc">@Model.Status</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+  <div class="card">
+    <div class="card-header"><span class="card-title"><i class="bi bi-person" style="color:var(--accent)"></i> Personal Info</span></div>
+    <div class="card-body">
+      <div class="detail-grid">
+        <div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">@Model.Email</div></div>
+        <div class="detail-item"><div class="detail-label">Phone</div><div class="detail-value">@Model.Phone</div></div>
+        <div class="detail-item"><div class="detail-label">Gender</div><div class="detail-value">@Model.Gender</div></div>
+        <div class="detail-item"><div class="detail-label">Date of Birth</div><div class="detail-value">@Model.DateOfBirth.ToString("dd MMM yyyy")</div></div>
+        <div class="detail-item"><div class="detail-label">PAN Number</div><div class="detail-value mono">@(Model.PanNumber ?? "Not provided")</div></div>
+        <div class="detail-item"><div class="detail-label">Joining Date</div><div class="detail-value">@Model.JoiningDate.ToString("dd MMM yyyy")</div></div>
+      </div>
+      @if (!string.IsNullOrEmpty(Model.Address)) {
+        <div class="detail-item"><div class="detail-label">Address</div><div class="detail-value">@Model.Address</div></div>
+      }
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header"><span class="card-title"><i class="bi bi-cash-stack" style="color:var(--accent)"></i> Salary Structure</span></div>
+    <div class="card-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 20px;">
+        <div class="detail-item"><div class="detail-label">Gross Monthly</div><div class="detail-value mono" style="color:var(--green);font-size:18px;font-weight:800;">₹@Model.GrossMonthly.ToString("N0")</div></div>
+        <div class="detail-item"><div class="detail-label">Net Take-Home</div><div class="detail-value mono" style="font-size:18px;font-weight:800;">₹@Model.NetMonthly.ToString("N0")</div></div>
+        <div class="detail-item"><div class="detail-label">Annual CTC</div><div class="detail-value mono">₹@Model.AnnualCTC.ToString("N0")</div></div>
+      </div>
+      @if (User.IsInRole("Admin") || User.IsInRole("HR")) {
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+          <a href="/Salary/Index?employeeId=@Model.Id&employeeName=@Uri.EscapeDataString(Model.FullName)" class="btn btn-secondary btn-sm">
+            <i class="bi bi-receipt"></i> View All Salary Slips
+          </a>
+        </div>
+      }
+    </div>
+  </div>
+</div>

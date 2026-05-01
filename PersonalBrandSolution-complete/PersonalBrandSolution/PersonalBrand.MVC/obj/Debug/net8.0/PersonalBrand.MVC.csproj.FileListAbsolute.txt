@@ -1143,3 +1143,4 @@ D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\Pe
 D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.MVC\obj\Debug\net8.0\PersonalBrand.MVC.pdb
 D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.MVC\obj\Debug\net8.0\PersonalBrand.MVC.genruntimeconfig.cache
 D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.MVC\obj\Debug\net8.0\ref\PersonalBrand.MVC.dll
+D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.MVC\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

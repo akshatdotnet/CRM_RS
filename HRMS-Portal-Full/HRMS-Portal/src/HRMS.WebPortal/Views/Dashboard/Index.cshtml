@@ -1,0 +1,90 @@
+@model HRMS.WebPortal.Models.Dashboard.DashboardViewModel
+@{ ViewData["Title"] = "Dashboard"; ViewData["ActiveNav"] = "Dashboard"; ViewData["PageTitle"] = "Dashboard"; }
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-icon blue"><i class="bi bi-people-fill"></i></div>
+    <div><div class="stat-value">@Model.TotalEmployees</div><div class="stat-label">Total Employees</div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green"><i class="bi bi-person-check-fill"></i></div>
+    <div><div class="stat-value">@Model.ActiveEmployees</div><div class="stat-label">Active</div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon amber"><i class="bi bi-person-exclamation"></i></div>
+    <div><div class="stat-value">@(Model.TotalEmployees - Model.ActiveEmployees)</div><div class="stat-label">Inactive / On Notice</div></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon purple"><i class="bi bi-building"></i></div>
+    <div><div class="stat-value">Acme</div><div class="stat-label">Organization</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <span class="card-title"><i class="bi bi-people" style="color:var(--accent)"></i> Recent Employees</span>
+    <a href="/Employee" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-right"></i> View All</a>
+  </div>
+  @if (!Model.RecentEmployees.Any()) {
+    <div class="empty-state">
+      <i class="bi bi-people"></i>
+      <h3>No employees yet</h3>
+      <p><a href="/Employee/Create">Add your first employee</a></p>
+    </div>
+  } else {
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Employee</th><th>Department</th><th>Designation</th><th>Joined</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          @foreach (var e in Model.RecentEmployees) {
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    @e.FullName.Substring(0,1)
+                  </div>
+                  <div>
+                    <div style="font-weight:600;font-size:13.5px;">@e.FullName</div>
+                    <div class="mono" style="font-size:11px;color:var(--text-muted)">@e.EmployeeCode</div>
+                  </div>
+                </div>
+              </td>
+              <td>@e.Department</td>
+              <td style="color:var(--text-muted);font-size:13px;">@e.Designation</td>
+              <td style="font-size:13px;">@e.JoiningDate.ToString("dd MMM yyyy")</td>
+              <td>
+                @{
+                  var bc = e.Status switch { "Active" => "badge-active", "OnNotice" => "badge-notice", "Resigned" => "badge-resigned", _ => "badge-terminated" };
+                }
+                <span class="badge @bc">@e.Status</span>
+              </td>
+              <td><a href="/Employee/Detail/@e.Id" class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i></a></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+@if (User.IsInRole("Admin") || User.IsInRole("HR")) {
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+  <div class="card">
+    <div class="card-header"><span class="card-title"><i class="bi bi-lightning-charge" style="color:var(--accent)"></i> Quick Actions</span></div>
+    <div class="card-body" style="display:flex;flex-direction:column;gap:10px;">
+      <a href="/Employee/Create" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i> Add New Employee</a>
+      <a href="/Salary" class="btn btn-secondary"><i class="bi bi-cash-coin"></i> Manage Salary Slips</a>
+      <a href="/Document" class="btn btn-secondary"><i class="bi bi-file-earmark-plus"></i> Generate Documents</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><span class="card-title"><i class="bi bi-info-circle" style="color:var(--accent)"></i> System Info</span></div>
+    <div class="card-body">
+      <div class="detail-item"><div class="detail-label">Logged In As</div><div class="detail-value">@Model.UserName</div></div>
+      <div class="detail-item"><div class="detail-label">Role</div><div class="detail-value"><span class="badge badge-admin">@Model.UserRole</span></div></div>
+      <div class="detail-item"><div class="detail-label">Email</div><div class="detail-value">@Model.UserEmail</div></div>
+      <div class="detail-item"><div class="detail-label">API Backend</div><div class="detail-value"><span style="color:var(--green)"><i class="bi bi-circle-fill" style="font-size:8px"></i> Connected</span></div></div>
+    </div>
+  </div>
+</div>
+}

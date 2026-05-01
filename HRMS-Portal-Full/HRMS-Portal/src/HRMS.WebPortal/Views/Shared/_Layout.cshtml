@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>@ViewData["Title"] — HRMS Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="~/css/hrms.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ── Sidebar ───────────────────────────────────────────── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <a class="brand-logo" href="/Dashboard">
+        <div class="brand-icon">H</div>
+        <div>
+          <div class="brand-text">HRMS Portal</div>
+          <div class="brand-sub">Phase 1 — Acme Corp</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">@(User.Identity?.Name?.Length > 0 ? User.Identity.Name.Substring(0,1).ToUpper() : "U")</div>
+      <div class="user-info">
+        <div class="user-name">@User.Identity?.Name</div>
+        <div class="user-role">@User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a href="/Dashboard" class="nav-item @(ViewData["ActiveNav"]?.ToString() == "Dashboard" ? "active" : "")">
+        <i class="bi bi-grid-fill"></i> Dashboard
+      </a>
+      <a href="/Employee" class="nav-item @(ViewData["ActiveNav"]?.ToString() == "Employee" ? "active" : "")">
+        <i class="bi bi-people-fill"></i> Employees
+      </a>
+
+      @if (User.IsInRole("Admin") || User.IsInRole("HR")) {
+        <div class="nav-section">HR Actions</div>
+        <a href="/Employee/Create" class="nav-item @(ViewData["ActiveNav"]?.ToString() == "EmployeeCreate" ? "active" : "")">
+          <i class="bi bi-person-plus-fill"></i> Add Employee
+        </a>
+        <a href="/Salary" class="nav-item @(ViewData["ActiveNav"]?.ToString() == "Salary" ? "active" : "")">
+          <i class="bi bi-cash-coin"></i> Salary Slips
+        </a>
+        <a href="/Document" class="nav-item @(ViewData["ActiveNav"]?.ToString() == "Document" ? "active" : "")">
+          <i class="bi bi-file-earmark-text-fill"></i> Documents
+        </a>
+      }
+
+      @if (User.IsInRole("Employee")) {
+        <div class="nav-section">My Records</div>
+       // @{
+          var empId = User.FindFirst("employeeId")?.Value;
+        //}
+        @if (!string.IsNullOrEmpty(empId)) {
+          <a href="/Employee/Detail/@empId" class="nav-item">
+            <i class="bi bi-person-circle"></i> My Profile
+          </a>
+          <a href="/Salary/Index?employeeId=@empId" class="nav-item @(ViewData["ActiveNav"]?.ToString() == "Salary" ? "active" : "")">
+            <i class="bi bi-cash-coin"></i> My Salary Slips
+          </a>
+        }
+      }
+    </nav>
+
+    <div class="sidebar-footer">
+      <form asp-controller="Auth" asp-action="Logout" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-secondary" style="width:100%;justify-content:center;">
+          <i class="bi bi-box-arrow-left"></i> Sign Out
+        </button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- ── Main ──────────────────────────────────────────────── -->
+  <div class="main-wrap">
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="page-title">@ViewData["PageTitle"]</span>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-user">
+          <i class="bi bi-building" style="color:var(--accent)"></i> Acme Corporation
+        </span>
+      </div>
+    </header>
+
+    <main class="content">
+      @if (TempData["Success"] != null) {
+        <div class="alert alert-success"><i class="bi bi-check-circle-fill"></i> @TempData["Success"]</div>
+      }
+      @if (TempData["Error"] != null) {
+        <div class="alert alert-error"><i class="bi bi-exclamation-triangle-fill"></i> @TempData["Error"]</div>
+      }
+      @RenderBody()
+    </main>
+  </div>
+
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,71 @@
+@model IEnumerable<UserHub.Application.DTOs.RoleDto>
+@{ ViewData["Title"] = "Roles"; }
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h5 class="mb-0 fw-semibold text-white"><i class="bi bi-shield-lock-fill text-warning me-2"></i>Roles</h5>
+    <a asp-action="Create" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg me-1"></i>New Role</a>
+</div>
+
+<div class="card bg-dark border border-secondary">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th class="border-secondary text-muted fw-normal small ps-3">Name</th>
+                        <th class="border-secondary text-muted fw-normal small">Description</th>
+                        <th class="border-secondary text-muted fw-normal small">Users</th>
+                        <th class="border-secondary text-muted fw-normal small">Status</th>
+                        <th class="border-secondary text-muted fw-normal small text-end pe-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model)
+                    {
+                        <tr>
+                            <td class="border-secondary ps-3">
+                                <span class="text-white fw-semibold">@role.Name</span>
+                                @if (role.IsSuperAdmin)
+                                {
+                                    <span class="badge bg-danger bg-opacity-25 text-danger ms-2 small">SuperAdmin</span>
+                                }
+                            </td>
+                            <td class="border-secondary text-muted small">@role.Description</td>
+                            <td class="border-secondary text-muted">@role.UserCount</td>
+                            <td class="border-secondary">
+                                @if (role.IsActive)
+                                {
+                                    <span class="badge bg-success bg-opacity-25 text-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary bg-opacity-25 text-secondary">Inactive</span>
+                                }
+                            </td>
+                            <td class="border-secondary text-end pe-3">
+                                <a asp-action="Permissions" asp-route-id="@role.Id"
+                                   class="btn btn-sm btn-outline-info me-1" title="Permissions">
+                                    <i class="bi bi-key"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@role.Id"
+                                   class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                @if (!role.IsSuperAdmin)
+                                {
+                                    <form asp-action="Delete" asp-route-id="@role.Id" method="post" class="d-inline"
+                                          onsubmit="return confirm('Delete this role?')">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

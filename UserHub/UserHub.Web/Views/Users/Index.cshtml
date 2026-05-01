@@ -1,0 +1,153 @@
+@model UserHub.Application.DTOs.PagedResult<UserHub.Application.DTOs.UserListItemDto>
+@using UserHub.Application.DTOs
+@{ ViewData["Title"] = "Users"; var q = ViewBag.Query as UserQueryDto ?? new UserQueryDto(); }
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h5 class="mb-0 fw-semibold text-white"><i class="bi bi-people-fill text-primary me-2"></i>Users</h5>
+    <a asp-action="Create" class="btn btn-primary btn-sm">
+        <i class="bi bi-plus-lg me-1"></i>New User
+    </a>
+</div>
+
+<!-- Filters -->
+<form method="get" class="card bg-dark border border-secondary p-3 mb-3">
+    <div class="row g-2 align-items-end">
+        <div class="col-12 col-md-4">
+            <input type="text" name="search" value="@q.Search" class="form-control form-control-sm bg-dark border-secondary text-white"
+                   placeholder="Search name, email, username…"/>
+        </div>
+        <div class="col-6 col-md-2">
+            <select name="isActive" class="form-select form-select-sm bg-dark border-secondary text-white">
+                <option value="">All Status</option>
+                <option value="true" selected="@(q.IsActive == true)">Active</option>
+                <option value="false" selected="@(q.IsActive == false)">Inactive</option>
+            </select>
+        </div>
+        <div class="col-6 col-md-2">
+            <select name="sortBy" class="form-select form-select-sm bg-dark border-secondary text-white">
+                <option value="Username" selected="@(q.SortBy=="Username")">Username</option>
+                <option value="Email" selected="@(q.SortBy=="Email")">Email</option>
+                <option value="CreatedAt" selected="@(q.SortBy=="CreatedAt")">Created</option>
+                <option value="LastLoginAt" selected="@(q.SortBy=="LastLoginAt")">Last Login</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-search me-1"></i>Filter
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary btn-sm ms-1">
+                <i class="bi bi-x-lg"></i>
+            </a>
+        </div>
+    </div>
+</form>
+
+<!-- Table -->
+<div class="card bg-dark border border-secondary">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-dark table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th class="border-secondary text-muted fw-normal small ps-3">User</th>
+                        <th class="border-secondary text-muted fw-normal small">Email</th>
+                        <th class="border-secondary text-muted fw-normal small">Roles</th>
+                        <th class="border-secondary text-muted fw-normal small">Status</th>
+                        <th class="border-secondary text-muted fw-normal small">Last Login</th>
+                        <th class="border-secondary text-muted fw-normal small text-end pe-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Items)
+                    {
+                        <tr>
+                            <td class="border-secondary ps-3">
+                                <div class="d-flex align-items-center gap-2">
+                                    <div class="avatar-circle-sm">@user.FullName[0]</div>
+                                    <div>
+                                        <div class="text-white small fw-semibold">@user.FullName</div>
+                                        <div class="text-muted" style="font-size:0.72rem;">@@@user.Username</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="border-secondary text-muted small">@user.Email</td>
+                            <td class="border-secondary">
+                                @foreach (var r in user.Roles)
+                                {
+                                    <span class="badge bg-secondary bg-opacity-50 text-light me-1 small">@r</span>
+                                }
+                            </td>
+                            <td class="border-secondary">
+                                @if (user.IsActive)
+                                {
+                                    <span class="badge bg-success bg-opacity-25 text-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger bg-opacity-25 text-danger">Inactive</span>
+                                }
+                            </td>
+                            <td class="border-secondary text-muted small">
+                                @(user.LastLoginAt?.ToString("dd MMM yyyy HH:mm") ?? "—")
+                            </td>
+                            <td class="border-secondary text-end pe-3">
+                                <a asp-action="Details" asp-route-id="@user.Id" class="btn btn-sm btn-outline-secondary me-1" title="Details">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-outline-primary me-1" title="Edit">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <form asp-action="ToggleActive" asp-route-id="@user.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-warning me-1" title="Toggle Active">
+                                        <i class="bi bi-toggle-on"></i>
+                                    </button>
+                                </form>
+                                <form asp-action="Delete" asp-route-id="@user.Id" method="post" class="d-inline"
+                                      onsubmit="return confirm('Delete this user?')">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                    @if (!Model.Items.Any())
+                    {
+                        <tr><td colspan="6" class="text-center text-muted py-5 border-secondary">No users found.</td></tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    @if (Model.TotalPages > 1)
+    {
+        <div class="card-footer border-secondary d-flex align-items-center justify-content-between">
+            <span class="text-muted small">
+                Showing @((q.Page - 1) * q.PageSize + 1)–@(Math.Min(q.Page * q.PageSize, Model.TotalCount)) of @Model.TotalCount
+            </span>
+            <nav>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item @(!Model.HasPrevious ? "disabled" : "")">
+                        <a class="page-link bg-dark border-secondary text-secondary"
+                           asp-action="Index" asp-route-page="@(q.Page-1)" asp-route-search="@q.Search">&laquo;</a>
+                    </li>
+                    @for (int p = 1; p <= Model.TotalPages; p++)
+                    {
+                        <li class="page-item @(p == q.Page ? "active" : "")">
+                            <a class="page-link bg-dark border-secondary text-secondary"
+                               asp-action="Index" asp-route-page="@p" asp-route-search="@q.Search">@p</a>
+                        </li>
+                    }
+                    <li class="page-item @(!Model.HasNext ? "disabled" : "")">
+                        <a class="page-link bg-dark border-secondary text-secondary"
+                           asp-action="Index" asp-route-page="@(q.Page+1)" asp-route-search="@q.Search">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
+</div>

@@ -1,0 +1,131 @@
+@model HRMS.WebPortal.Models.Employee.EmployeeListViewModel
+@{ ViewData["Title"] = "Employees"; ViewData["ActiveNav"] = "Employee"; ViewData["PageTitle"] = "Employees"; }
+
+<div class="page-header">
+  <div>
+    <h1>Employees</h1>
+    <p>@Model.TotalCount total &bull; Showing @Model.Employees.Count on page @Model.Page of @Model.TotalPages</p>
+  </div>
+  @if (User.IsInRole("Admin") || User.IsInRole("HR")) {
+    <a href="/Employee/Create" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i> Add Employee</a>
+  }
+</div>
+
+<div class="card">
+  <!-- Filter bar -->
+  <form method="get" action="/Employee" id="filter-form">
+    <div class="filter-bar">
+      <div class="search-wrap" style="flex:2;">
+        <i class="bi bi-search"></i>
+        <input name="search" value="@Model.Search" class="form-control search-debounce" placeholder="Search by name, email or code..."/>
+      </div>
+      <select name="dept" class="form-control filter-auto-submit" style="max-width:180px;">
+        <option value="">All Departments</option>
+        @foreach (var d in Enum.GetValues<HRMS.Domain.Enums.Department>()) {
+          <option value="@d" @@(Model.DepartmentFilter == d.ToString() ? "selected" : "")>@d</option>
+        }
+      </select>
+      <select name="status" class="form-control filter-auto-submit" style="max-width:160px;">
+        <option value="">All Status</option>
+        @foreach (var s in Enum.GetValues<HRMS.Domain.Enums.EmploymentStatus>()) {
+          <option value="@s" @@(Model.StatusFilter == s.ToString() ? "selected" : "")>@s</option>
+        }
+      </select>
+      @if (!string.IsNullOrEmpty(Model.Search) || !string.IsNullOrEmpty(Model.DepartmentFilter) || !string.IsNullOrEmpty(Model.StatusFilter)) {
+        <a href="/Employee" class="btn btn-secondary btn-sm"><i class="bi bi-x"></i> Clear</a>
+      }
+    </div>
+  </form>
+
+  <!-- Table -->
+  @if (!Model.Employees.Any()) {
+    <div class="empty-state">
+      <i class="bi bi-people"></i>
+      <h3>No employees found</h3>
+      <p>@(string.IsNullOrEmpty(Model.Search) ? "Add your first employee using the button above." : "Try adjusting your search or filters.")</p>
+    </div>
+  } else {
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Employee</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Joined</th>
+            <th>Gross CTC</th>
+            <th>Status</th>
+            <th style="text-align:right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var e in Model.Employees) {
+            <tr>
+              <td>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--purple));color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    @e.FullName.Substring(0,1)
+                  </div>
+                  <div>
+                    <div style="font-weight:600;font-size:13.5px;">@e.FullName</div>
+                    <div class="mono" style="font-size:11px;color:var(--text-muted);">@e.EmployeeCode &bull; @e.Email</div>
+                  </div>
+                </div>
+              </td>
+              <td><span style="font-size:13px;">@e.Department</span></td>
+              <td style="font-size:13px;color:var(--text-muted);">@e.Designation</td>
+              <td style="font-size:13px;">@e.JoiningDate.ToString("dd MMM yyyy")</td>
+              <td class="mono" style="font-weight:700;">
+                @(e.GrossMonthly.HasValue ? "Rs. " + e.GrossMonthly.Value.ToString("N0") : "—")
+              </td>
+              <td>
+                @{
+                  var bc = e.Status switch {
+                    "Active"     => "badge-active",
+                    "OnNotice"   => "badge-notice",
+                    "Resigned"   => "badge-resigned",
+                    _            => "badge-terminated"
+                  };
+                }
+                <span class="badge @bc">@e.Status</span>
+              </td>
+              <td>
+                <div class="action-row" style="justify-content:flex-end;">
+                  <a href="/Employee/Detail/@e.Id" class="btn btn-secondary btn-sm btn-icon" title="View Details"><i class="bi bi-eye"></i></a>
+                  @if (User.IsInRole("Admin") || User.IsInRole("HR")) {
+                    <a href="/Salary/Index?employeeId=@e.Id&employeeName=@Uri.EscapeDataString(e.FullName)" class="btn btn-secondary btn-sm btn-icon" title="Salary Slips"><i class="bi bi-cash-coin"></i></a>
+                    <a href="/Document/Index?employeeId=@e.Id&employeeName=@Uri.EscapeDataString(e.FullName)" class="btn btn-secondary btn-sm btn-icon" title="Documents"><i class="bi bi-file-earmark-text"></i></a>
+                  }
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    @if (Model.TotalPages > 1) {
+      <div class="pagination">
+        @if (Model.Page > 1) {
+          <a href="?page=@(Model.Page - 1)&search=@Model.Search&dept=@Model.DepartmentFilter&status=@Model.StatusFilter" class="page-link"><i class="bi bi-chevron-left"></i></a>
+        } else {
+          <span class="page-link disabled"><i class="bi bi-chevron-left"></i></span>
+        }
+        @for (int p = Math.Max(1, Model.Page - 2); p <= Math.Min(Model.TotalPages, Model.Page + 2); p++) {
+          <a href="?page=@p&search=@Model.Search&dept=@Model.DepartmentFilter&status=@Model.StatusFilter"
+             class="page-link @(p == Model.Page ? "active" : "")">@p</a>
+        }
+        @if (Model.Page < Model.TotalPages) {
+          <a href="?page=@(Model.Page + 1)&search=@Model.Search&dept=@Model.DepartmentFilter&status=@Model.StatusFilter" class="page-link"><i class="bi bi-chevron-right"></i></a>
+        } else {
+          <span class="page-link disabled"><i class="bi bi-chevron-right"></i></span>
+        }
+      </div>
+    }
+  }
+</div>
+
+@section Scripts {
+  <script src="~/js/site.js"></script>
+}

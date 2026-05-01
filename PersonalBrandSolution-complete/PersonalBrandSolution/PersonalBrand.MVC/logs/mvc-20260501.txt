@@ -1,0 +1,65 @@
+2026-05-01 00:54:20.030 +05:30 [INF] PersonalBrand MVC starting
+2026-05-01 00:54:20.223 +05:30 [INF] User profile is available. Using 'C:\Users\aksha\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-01 00:54:20.635 +05:30 [INF] Now listening on: https://localhost:63809
+2026-05-01 00:54:20.639 +05:30 [INF] Now listening on: http://localhost:63810
+2026-05-01 00:54:20.731 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-01 00:54:20.734 +05:30 [INF] Hosting environment: Development
+2026-05-01 00:54:20.736 +05:30 [INF] Content root path: D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.MVC
+2026-05-01 00:54:25.788 +05:30 [INF] Request starting HTTP/2 GET https://localhost:63809/ - null null
+2026-05-01 00:54:26.441 +05:30 [INF] Executing endpoint 'PersonalBrand.MVC.Controllers.HomeController.Index (PersonalBrand.MVC)'
+2026-05-01 00:54:26.533 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller PersonalBrand.MVC.Controllers.HomeController (PersonalBrand.MVC).
+2026-05-01 00:54:26.630 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/persona
+2026-05-01 00:54:26.695 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/persona
+2026-05-01 00:54:26.743 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/skills
+2026-05-01 00:54:26.747 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/skills
+2026-05-01 00:54:26.772 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/roadmap
+2026-05-01 00:54:26.776 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/roadmap
+2026-05-01 00:54:26.796 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/courses
+2026-05-01 00:54:26.800 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/courses
+2026-05-01 00:54:26.844 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/projects
+2026-05-01 00:54:26.846 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/projects
+2026-05-01 00:54:26.877 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/qa
+2026-05-01 00:54:26.882 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/qa
+2026-05-01 00:54:26.896 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/services
+2026-05-01 00:54:26.906 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/services
+2026-05-01 00:54:26.929 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/leads/pipeline
+2026-05-01 00:54:26.980 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/leads/pipeline
+2026-05-01 00:54:27.000 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/blog?page=1&pageSize=6
+2026-05-01 00:54:27.015 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/blog?page=1&pageSize=6
+2026-05-01 00:54:27.041 +05:30 [INF] Start processing HTTP request GET https://localhost:63807/api/v1/testimonials
+2026-05-01 00:54:27.057 +05:30 [INF] Sending HTTP request GET https://localhost:63807/api/v1/testimonials
+2026-05-01 00:54:29.570 +05:30 [INF] Received HTTP response headers after 2706.922ms - 200
+2026-05-01 00:54:29.570 +05:30 [INF] Received HTTP response headers after 2674.6668ms - 200
+2026-05-01 00:54:29.570 +05:30 [INF] Received HTTP response headers after 2464.9247ms - 200
+2026-05-01 00:54:29.570 +05:30 [INF] Received HTTP response headers after 2610.9911ms - 200
+2026-05-01 00:54:29.570 +05:30 [INF] Received HTTP response headers after 2836.9161ms - 200
+2026-05-01 00:54:29.570 +05:30 [INF] Received HTTP response headers after 2746.3613ms - 200
+2026-05-01 00:54:29.570 +05:30 [INF] Received HTTP response headers after 2774.4251ms - 200
+2026-05-01 00:54:30.360 +05:30 [INF] Received HTTP response headers after 3469.6151ms - 200
+2026-05-01 00:54:30.368 +05:30 [INF] End processing HTTP request after 3570.9822ms - 200
+2026-05-01 00:54:30.368 +05:30 [INF] End processing HTTP request after 3523.7235ms - 200
+2026-05-01 00:54:30.383 +05:30 [INF] End processing HTTP request after 3341.9441ms - 200
+2026-05-01 00:54:30.401 +05:30 [INF] End processing HTTP request after 3504.5263ms - 200
+2026-05-01 00:54:30.410 +05:30 [INF] End processing HTTP request after 3786.5406ms - 200
+2026-05-01 00:54:30.414 +05:30 [INF] End processing HTTP request after 3642.6135ms - 200
+2026-05-01 00:54:30.421 +05:30 [INF] End processing HTTP request after 3678.2934ms - 200
+2026-05-01 00:54:30.427 +05:30 [INF] End processing HTTP request after 3549.9862ms - 200
+2026-05-01 00:54:30.489 +05:30 [INF] Received HTTP response headers after 3460.4421ms - 200
+2026-05-01 00:54:30.489 +05:30 [INF] Received HTTP response headers after 3500.4679ms - 200
+2026-05-01 00:54:30.522 +05:30 [INF] End processing HTTP request after 3521.6783ms - 200
+2026-05-01 00:54:30.530 +05:30 [INF] End processing HTTP request after 3601.5491ms - 200
+2026-05-01 00:54:57.914 +05:30 [INF] Executing ViewResult, running view Index.
+2026-05-01 00:54:59.256 +05:30 [INF] Executed ViewResult - view Index executed in 28507.0665ms.
+2026-05-01 00:54:59.270 +05:30 [INF] Executed action PersonalBrand.MVC.Controllers.HomeController.Index (PersonalBrand.MVC) in 32726.746ms
+2026-05-01 00:54:59.275 +05:30 [INF] Executed endpoint 'PersonalBrand.MVC.Controllers.HomeController.Index (PersonalBrand.MVC)'
+2026-05-01 00:54:59.294 +05:30 [INF] Request finished HTTP/2 GET https://localhost:63809/ - 200 null text/html; charset=utf-8 33514.2562ms
+2026-05-01 00:55:01.923 +05:30 [INF] Request starting HTTP/2 GET https://localhost:63809/_vs/browserLink - null null
+2026-05-01 00:55:01.923 +05:30 [INF] Request starting HTTP/2 GET https://localhost:63809/_framework/aspnetcore-browser-refresh.js - null null
+2026-05-01 00:55:01.946 +05:30 [INF] Request finished HTTP/2 GET https://localhost:63809/_framework/aspnetcore-browser-refresh.js - 200 13770 application/javascript; charset=utf-8 22.633ms
+2026-05-01 00:55:02.041 +05:30 [INF] Request finished HTTP/2 GET https://localhost:63809/_vs/browserLink - 200 null text/javascript; charset=UTF-8 117.7672ms
+2026-05-01 00:55:02.278 +05:30 [INF] Request starting HTTP/2 GET https://localhost:63809/favicon.ico - null null
+2026-05-01 00:55:02.301 +05:30 [INF] Request finished HTTP/2 GET https://localhost:63809/favicon.ico - 404 0 null 23.2271ms
+2026-05-01 00:55:02.308 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:63809/favicon.ico, Response status code: 404
+2026-05-01 07:18:56.460 +05:30 [INF] Request starting HTTP/2 GET https://localhost:63809/resume.pdf - null null
+2026-05-01 07:18:56.486 +05:30 [INF] Request finished HTTP/2 GET https://localhost:63809/resume.pdf - 404 0 null 25.7355ms
+2026-05-01 07:18:56.498 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:63809/resume.pdf, Response status code: 404

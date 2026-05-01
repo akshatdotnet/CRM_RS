@@ -1,0 +1,69 @@
+@model HRMS.WebPortal.Models.Document.GenerateOfferLetterViewModel
+@{ ViewData["Title"] = "Generate Offer Letter"; ViewData["ActiveNav"] = "Document"; ViewData["PageTitle"] = "Generate Offer Letter"; }
+
+<div class="page-header">
+  <div>
+    <h1>Generate Offer Letter</h1>
+    <p>For: <strong>@Model.EmployeeName</strong></p>
+  </div>
+  <a href="/Document/Index?employeeId=@Model.EmployeeId&employeeName=@Uri.EscapeDataString(Model.EmployeeName)" class="btn btn-secondary">
+    <i class="bi bi-arrow-left"></i> Back to Documents
+  </a>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage)) {
+  <div class="alert alert-error"><i class="bi bi-exclamation-triangle-fill"></i> @Model.ErrorMessage</div>
+}
+
+<div class="card">
+  <div class="card-header">
+    <span class="card-title"><i class="bi bi-file-earmark-person" style="color:var(--accent)"></i> Offer Letter Details</span>
+  </div>
+  <div class="card-body">
+    <form asp-action="GenerateOffer" method="post">
+      @Html.AntiForgeryToken()
+      <input type="hidden" asp-for="EmployeeId"/>
+      <input type="hidden" asp-for="EmployeeName"/>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label asp-for="DesignationOffered">Designation Offered *</label>
+          <input asp-for="DesignationOffered" class="form-control" placeholder="Senior Software Engineer"/>
+          <span asp-validation-for="DesignationOffered" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="OfferedCTC">Annual CTC Offered (Rs.) *</label>
+          <input asp-for="OfferedCTC" type="number" step="10000" min="1" class="form-control" placeholder="1200000"/>
+          <span asp-validation-for="OfferedCTC" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="JoiningDeadline">Acceptance Deadline *</label>
+          <input asp-for="JoiningDeadline" type="date" class="form-control"/>
+          <span asp-validation-for="JoiningDeadline" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="ReportingManager">Reporting Manager</label>
+          <input asp-for="ReportingManager" class="form-control" placeholder="Priya Sharma"/>
+        </div>
+        <div class="form-group">
+          <label asp-for="WorkLocation">Work Location</label>
+          <input asp-for="WorkLocation" class="form-control" placeholder="Mumbai, India"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label asp-for="SpecialConditions">Special Conditions (optional)</label>
+        <textarea asp-for="SpecialConditions" class="form-control" rows="2" placeholder="Any special terms or conditions..."></textarea>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button type="submit" class="btn btn-primary"><i class="bi bi-file-earmark-person"></i> Generate Offer Letter</button>
+        <a href="/Document/Index?employeeId=@Model.EmployeeId&employeeName=@Uri.EscapeDataString(Model.EmployeeName)" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+@section Scripts {
+  <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -1,0 +1,31 @@
+@model UserHub.Application.DTOs.CreateRoleDto
+@{ ViewData["Title"] = "Create Role"; }
+<div class="d-flex align-items-center mb-3">
+    <a asp-action="Index" class="btn btn-sm btn-outline-secondary me-3"><i class="bi bi-arrow-left"></i></a>
+    <h5 class="mb-0 fw-semibold text-white">Create Role</h5>
+</div>
+<div class="card bg-dark border border-secondary" style="max-width:500px;">
+    <div class="card-body p-4">
+        <form asp-action="Create" method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small"></div>
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label text-muted small">Role Name</label>
+                <input asp-for="Name" class="form-control bg-dark border-secondary text-white"/>
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label text-muted small">Description</label>
+                <textarea asp-for="Description" class="form-control bg-dark border-secondary text-white" rows="2"></textarea>
+            </div>
+            <div class="form-check mb-4">
+                <input asp-for="IsSuperAdmin" class="form-check-input" type="checkbox"/>
+                <label asp-for="IsSuperAdmin" class="form-check-label text-muted small">SuperAdmin (full access bypass)</label>
+            </div>
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Create</button>
+                <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

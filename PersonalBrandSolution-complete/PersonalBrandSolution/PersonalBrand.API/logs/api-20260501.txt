@@ -1,0 +1,161 @@
+2026-05-01 00:54:23.010 +05:30 [WRN] Entity 'Lead' has a global query filter defined and is the required end of a relationship with the entity 'LeadNote'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-05-01 00:54:23.105 +05:30 [WRN] Entity 'Lead' has a global query filter defined and is the required end of a relationship with the entity 'LeadStatusHistory'. This may lead to unexpected results when the required entity is filtered out. Either configure the navigation as optional, or define matching query filters for both entities in the navigation. See https://go.microsoft.com/fwlink/?linkid=2131316 for more information.
+2026-05-01 00:54:24.230 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2026-05-01 00:54:24.787 +05:30 [INF] PersonalBrand API starting on 
+2026-05-01 00:54:26.197 +05:30 [INF] Now listening on: https://localhost:63807
+2026-05-01 00:54:26.213 +05:30 [INF] Now listening on: http://localhost:63808
+2026-05-01 00:54:26.462 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-01 00:54:26.465 +05:30 [INF] Hosting environment: Development
+2026-05-01 00:54:26.467 +05:30 [INF] Content root path: D:\Client_Project\CRM_RS\PersonalBrandSolution-complete\PersonalBrandSolution\PersonalBrand.API
+2026-05-01 00:54:27.017 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/services - null null
+2026-05-01 00:54:27.029 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/roadmap - null null
+2026-05-01 00:54:27.029 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/courses - null null
+2026-05-01 00:54:27.017 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/persona - null null
+2026-05-01 00:54:27.017 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/projects - null null
+2026-05-01 00:54:27.051 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/leads/pipeline - null null
+2026-05-01 00:54:27.017 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/skills - null null
+2026-05-01 00:54:27.172 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/testimonials - null null
+2026-05-01 00:54:27.172 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/blog?page=1&pageSize=6 - null null
+2026-05-01 00:54:27.017 +05:30 [INF] Request starting HTTP/1.1 GET https://localhost:63807/api/v1/qa - null null
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.RoadmapController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.SkillsController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.TestimonialsController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.CoursesController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.ServicesController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.LeadsController.GetPipeline (PersonalBrand.API)'
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.ProjectsController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:27.392 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.PersonaController.Get (PersonalBrand.API)'
+2026-05-01 00:54:27.446 +05:30 [INF] Route matched with {action = "GetAll", controller = "Roadmap"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PersonalBrand.API.Controllers.RoadmapController (PersonalBrand.API).
+2026-05-01 00:54:27.447 +05:30 [INF] Route matched with {action = "GetAll", controller = "Skills"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PersonalBrand.API.Controllers.SkillsController (PersonalBrand.API).
+2026-05-01 00:54:27.459 +05:30 [INF] Route matched with {action = "GetAll", controller = "Testimonials"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PersonalBrand.API.Controllers.TestimonialsController (PersonalBrand.API).
+2026-05-01 00:54:27.468 +05:30 [INF] Route matched with {action = "GetAll", controller = "Courses"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PersonalBrand.API.Controllers.CoursesController (PersonalBrand.API).
+2026-05-01 00:54:27.473 +05:30 [INF] Route matched with {action = "GetAll", controller = "Services"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PersonalBrand.API.Controllers.ServicesController (PersonalBrand.API).
+2026-05-01 00:54:27.481 +05:30 [INF] Route matched with {action = "GetPipeline", controller = "Leads"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetPipeline() on controller PersonalBrand.API.Controllers.LeadsController (PersonalBrand.API).
+2026-05-01 00:54:27.499 +05:30 [INF] Route matched with {action = "Get", controller = "Persona"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Get() on controller PersonalBrand.API.Controllers.PersonaController (PersonalBrand.API).
+2026-05-01 00:54:27.510 +05:30 [INF] Route matched with {action = "GetAll", controller = "Projects"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(System.Nullable`1[System.Boolean]) on controller PersonalBrand.API.Controllers.ProjectsController (PersonalBrand.API).
+2026-05-01 00:54:28.414 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "r"."Id", "r"."CreatedAt", "r"."Description", "r"."Era", "r"."Icon", "r"."IsDeleted", "r"."Side", "r"."SortOrder", "r"."TagsJson", "r"."Title", "r"."UpdatedAt", "r"."Year"
+FROM "RoadmapItems" AS "r"
+WHERE NOT ("r"."IsDeleted")
+ORDER BY "r"."Id"
+2026-05-01 00:54:28.414 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."CreatedAt", "p"."DemoUrl", "p"."Description", "p"."Emoji", "p"."GithubUrl", "p"."Highlight", "p"."Industry", "p"."IsDeleted", "p"."IsFeatured", "p"."Problem", "p"."SortOrder", "p"."StackJson", "p"."Title", "p"."UpdatedAt"
+FROM "Projects" AS "p"
+WHERE NOT ("p"."IsDeleted")
+ORDER BY "p"."Id"
+2026-05-01 00:54:28.414 +05:30 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "s"."Id", "s"."CreatedAt", "s"."IsDeleted", "s"."Name", "s"."Percentage", "s"."SortOrder", "s"."UpdatedAt"
+FROM "Skills" AS "s"
+WHERE NOT ("s"."IsDeleted")
+ORDER BY "s"."Id"
+2026-05-01 00:54:28.414 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."Duration", "c"."Icon", "c"."IsActive", "c"."IsDeleted", "c"."Level", "c"."ModulesJson", "c"."SortOrder", "c"."Students", "c"."Title", "c"."UpdatedAt"
+FROM "Courses" AS "c"
+WHERE NOT ("c"."IsDeleted")
+ORDER BY "c"."Id"
+2026-05-01 00:54:28.416 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."Company", "t"."CreatedAt", "t"."Initials", "t"."IsActive", "t"."IsDeleted", "t"."Name", "t"."SortOrder", "t"."Stars", "t"."Text", "t"."UpdatedAt"
+FROM "Testimonials" AS "t"
+WHERE NOT ("t"."IsDeleted")
+ORDER BY "t"."Id"
+2026-05-01 00:54:28.439 +05:30 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."CreatedAt", "c"."Description", "c"."FeaturesJson", "c"."Icon", "c"."IsDeleted", "c"."IsFeatured", "c"."Period", "c"."Price", "c"."SortOrder", "c"."Title", "c"."UpdatedAt"
+FROM "ConsultingServices" AS "c"
+WHERE NOT ("c"."IsDeleted")
+ORDER BY "c"."Id"
+2026-05-01 00:54:28.415 +05:30 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Bio", "p"."CertificationsJson", "p"."CreatedAt", "p"."Email", "p"."Experience", "p"."FirstName", "p"."Github", "p"."IsDeleted", "p"."LastName", "p"."LinkedIn", "p"."Location", "p"."Phone", "p"."ShortTitle", "p"."StatsJson", "p"."Tagline", "p"."Title", "p"."Twitter", "p"."UpdatedAt", "p"."YouTube"
+FROM "Personas" AS "p"
+WHERE NOT ("p"."IsDeleted")
+LIMIT 1
+2026-05-01 00:54:28.591 +05:30 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2026-05-01 00:54:28.725 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:28.725 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:28.762 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:28.850 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:28.880 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:28.883 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:28.913 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:28.926 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "l"."Id", "l"."Budget", "l"."CreatedAt", "l"."Email", "l"."IsDeleted", "l"."Message", "l"."Name", "l"."Role", "l"."Service", "l"."Source", "l"."Status", "l"."UpdatedAt", "l"."Value", "l0"."Id", "l0"."AddedBy", "l0"."CreatedAt", "l0"."IsDeleted", "l0"."LeadId", "l0"."Note", "l0"."UpdatedAt", "l1"."Id", "l1"."ChangedBy", "l1"."CreatedAt", "l1"."FromStatus", "l1"."IsDeleted", "l1"."LeadId", "l1"."ToStatus", "l1"."UpdatedAt"
+FROM "Leads" AS "l"
+LEFT JOIN "LeadNotes" AS "l0" ON "l"."Id" = "l0"."LeadId"
+LEFT JOIN "LeadStatusHistories" AS "l1" ON "l"."Id" = "l1"."LeadId"
+WHERE NOT ("l"."IsDeleted")
+ORDER BY "l"."CreatedAt" DESC, "l"."Id", "l0"."CreatedAt" DESC, "l0"."Id", "l1"."CreatedAt" DESC
+2026-05-01 00:54:29.027 +05:30 [INF] Executed action PersonalBrand.API.Controllers.ProjectsController.GetAll (PersonalBrand.API) in 1387.7122ms
+2026-05-01 00:54:29.027 +05:30 [INF] Executed action PersonalBrand.API.Controllers.RoadmapController.GetAll (PersonalBrand.API) in 1519.6716ms
+2026-05-01 00:54:29.027 +05:30 [INF] Executed action PersonalBrand.API.Controllers.SkillsController.GetAll (PersonalBrand.API) in 1508.2388ms
+2026-05-01 00:54:29.058 +05:30 [INF] Executed action PersonalBrand.API.Controllers.CoursesController.GetAll (PersonalBrand.API) in 1509.8591ms
+2026-05-01 00:54:29.073 +05:30 [INF] Executed action PersonalBrand.API.Controllers.ServicesController.GetAll (PersonalBrand.API) in 1514.8347ms
+2026-05-01 00:54:29.109 +05:30 [INF] Executed action PersonalBrand.API.Controllers.TestimonialsController.GetAll (PersonalBrand.API) in 1578.8591ms
+2026-05-01 00:54:29.296 +05:30 [INF] Executed action PersonalBrand.API.Controllers.PersonaController.Get (PersonalBrand.API) in 1671.212ms
+2026-05-01 00:54:29.307 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.ProjectsController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.311 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.RoadmapController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.315 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.SkillsController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.322 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.CoursesController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.326 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.ServicesController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.330 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.TestimonialsController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.333 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.PersonaController.Get (PersonalBrand.API)'
+2026-05-01 00:54:29.340 +05:30 [INF] GET /api/v1/projects → 200 [1970ms]
+2026-05-01 00:54:29.343 +05:30 [INF] GET /api/v1/roadmap → 200 [1974ms]
+2026-05-01 00:54:29.348 +05:30 [INF] GET /api/v1/skills → 200 [1979ms]
+2026-05-01 00:54:29.351 +05:30 [INF] GET /api/v1/courses → 200 [1982ms]
+2026-05-01 00:54:29.358 +05:30 [INF] GET /api/v1/services → 200 [1989ms]
+2026-05-01 00:54:29.361 +05:30 [INF] GET /api/v1/testimonials → 200 [1993ms]
+2026-05-01 00:54:29.365 +05:30 [INF] GET /api/v1/persona → 200 [1997ms]
+2026-05-01 00:54:29.409 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/projects - 200 null application/json; charset=utf-8 2408.5974ms
+2026-05-01 00:54:29.409 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/roadmap - 200 null application/json; charset=utf-8 2408.492ms
+2026-05-01 00:54:29.412 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/skills - 200 null application/json; charset=utf-8 2413.4538ms
+2026-05-01 00:54:29.473 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.QAController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.440 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/persona - 200 null application/json; charset=utf-8 2440.9911ms
+2026-05-01 00:54:29.542 +05:30 [INF] Route matched with {action = "GetAll", controller = "QA"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(System.String, System.String) on controller PersonalBrand.API.Controllers.QAController (PersonalBrand.API).
+2026-05-01 00:54:29.418 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/courses - 200 null application/json; charset=utf-8 2419.5832ms
+2026-05-01 00:54:29.574 +05:30 [INF] Executing endpoint 'PersonalBrand.API.Controllers.BlogController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.469 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "l"."Status", "l"."Id", "l"."Budget", "l"."CreatedAt", "l"."Email", "l"."IsDeleted", "l"."Message", "l"."Name", "l"."Role", "l"."Service", "l"."Source", "l"."UpdatedAt", "l"."Value"
+FROM "Leads" AS "l"
+WHERE NOT ("l"."IsDeleted")
+ORDER BY "l"."Status"
+2026-05-01 00:54:29.429 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/services - 200 null application/json; charset=utf-8 2429.4463ms
+2026-05-01 00:54:29.435 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/testimonials - 200 null application/json; charset=utf-8 2262.5841ms
+2026-05-01 00:54:29.619 +05:30 [INF] Route matched with {action = "GetAll", controller = "Blog"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll(Int32, Int32) on controller PersonalBrand.API.Controllers.BlogController (PersonalBrand.API).
+2026-05-01 00:54:29.618 +05:30 [INF] Request starting HTTP/2 GET https://localhost:63807/ - null null
+2026-05-01 00:54:29.793 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "q"."Id", "q"."Answer", "q"."Category", "q"."CreatedAt", "q"."IsActive", "q"."IsDeleted", "q"."Level", "q"."Question", "q"."SortOrder", "q"."UpdatedAt"
+FROM "QAItems" AS "q"
+WHERE NOT ("q"."IsDeleted")
+ORDER BY "q"."Id"
+2026-05-01 00:54:29.801 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:29.820 +05:30 [INF] Executed action PersonalBrand.API.Controllers.QAController.GetAll (PersonalBrand.API) in 246.2797ms
+2026-05-01 00:54:29.831 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.QAController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:29.848 +05:30 [INF] GET /api/v1/qa → 200 [381ms]
+2026-05-01 00:54:29.865 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/qa - 200 null application/json; charset=utf-8 2866.7497ms
+2026-05-01 00:54:29.894 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:29.942 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "BlogPosts" AS "b"
+WHERE NOT ("b"."IsDeleted") AND "b"."IsPublished"
+2026-05-01 00:54:29.945 +05:30 [INF] Executed action PersonalBrand.API.Controllers.LeadsController.GetPipeline (PersonalBrand.API) in 2379.2916ms
+2026-05-01 00:54:29.962 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.LeadsController.GetPipeline (PersonalBrand.API)'
+2026-05-01 00:54:29.965 +05:30 [INF] GET /api/v1/leads/pipeline → 200 [2596ms]
+2026-05-01 00:54:29.971 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/leads/pipeline - 200 null application/json; charset=utf-8 2920.0705ms
+2026-05-01 00:54:29.980 +05:30 [INF] GET / → 404 [4ms]
+2026-05-01 00:54:29.995 +05:30 [INF] Request finished HTTP/2 GET https://localhost:63807/ - 404 0 null 377.8012ms
+2026-05-01 00:54:30.020 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "b"."Id", "b"."Category", "b"."Content", "b"."CreatedAt", "b"."Emoji", "b"."Excerpt", "b"."IsDeleted", "b"."IsPublished", "b"."PublishedDate", "b"."ReadTime", "b"."Slug", "b"."TagsJson", "b"."Title", "b"."UpdatedAt", "b"."ViewCount"
+FROM "BlogPosts" AS "b"
+WHERE NOT ("b"."IsDeleted") AND "b"."IsPublished"
+ORDER BY "b"."PublishedDate" DESC
+LIMIT @__p_1 OFFSET @__p_0
+2026-05-01 00:54:30.052 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:63807/, Response status code: 404
+2026-05-01 00:54:30.067 +05:30 [INF] Executing OkObjectResult, writing value of type 'PersonalBrand.Shared.Models.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-05-01 00:54:30.158 +05:30 [INF] Executed action PersonalBrand.API.Controllers.BlogController.GetAll (PersonalBrand.API) in 484.4061ms
+2026-05-01 00:54:30.176 +05:30 [INF] Executed endpoint 'PersonalBrand.API.Controllers.BlogController.GetAll (PersonalBrand.API)'
+2026-05-01 00:54:30.180 +05:30 [INF] GET /api/v1/blog → 200 [606ms]
+2026-05-01 00:54:30.194 +05:30 [INF] Request finished HTTP/1.1 GET https://localhost:63807/api/v1/blog?page=1&pageSize=6 - 200 null application/json; charset=utf-8 3021.5986ms
+2026-05-01 00:54:47.175 +05:30 [INF] Request starting HTTP/2 GET https://localhost:63807/ - null null
+2026-05-01 00:54:47.198 +05:30 [INF] GET / → 404 [0ms]
+2026-05-01 00:54:47.204 +05:30 [INF] Request finished HTTP/2 GET https://localhost:63807/ - 404 0 null 29.432ms
+2026-05-01 00:54:47.214 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:63807/, Response status code: 404

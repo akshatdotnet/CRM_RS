@@ -1,0 +1,98 @@
+@model HRMS.WebPortal.Models.Auth.LoginViewModel
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Sign In &mdash; HRMS Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="~/css/hrms.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="login-page">
+  <div class="login-card">
+
+    <div class="login-brand">
+      <div class="login-brand-icon">H</div>
+      <h1>HRMS Portal</h1>
+      <p>Human Resource Management System</p>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage)) {
+      <div class="alert alert-error"><i class="bi bi-exclamation-triangle-fill"></i> @Model.ErrorMessage</div>
+    }
+
+    <!-- Quick Login Shortcuts -->
+    <div class="demo-creds">
+      <h4>Quick Login &mdash; Click to fill</h4>
+      <div class="cred-row">
+        <button type="button" class="cred-chip cred-fill" data-email="admin@acmecorp.in" data-password="Admin@123">
+          <span class="cred-role-badge cred-admin">Admin</span>
+          <span class="cred-email">admin@acmecorp.in</span>
+        </button>
+        <button type="button" class="cred-chip cred-fill" data-email="priya.sharma@acmecorp.in" data-password="Hr@12345">
+          <span class="cred-role-badge cred-hr">HR</span>
+          <span class="cred-email">priya.sharma@acmecorp.in</span>
+        </button>
+        <button type="button" class="cred-chip cred-fill" data-email="rahul.verma@acmecorp.in" data-password="Welcome@123">
+          <span class="cred-role-badge cred-emp">Employee</span>
+          <span class="cred-email">rahul.verma@acmecorp.in</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Login Form -->
+    <form asp-action="Login" asp-controller="Auth" method="post">
+      @Html.AntiForgeryToken()
+      <input type="hidden" asp-for="ReturnUrl"/>
+
+      <div class="form-group">
+        <label for="Email"><i class="bi bi-envelope"></i> Email Address</label>
+        <input asp-for="Email" id="Email" type="email" class="form-control" placeholder="you@acmecorp.in" autocomplete="email" required/>
+        <span asp-validation-for="Email" class="text-danger" style="font-size:12px;"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="Password"><i class="bi bi-lock"></i> Password</label>
+        <div style="position:relative;">
+          <input asp-for="Password" id="Password" type="password" class="form-control" placeholder="Your password" autocomplete="current-password" required/>
+          <button type="button" onclick="togglePass()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);">
+            <i class="bi bi-eye" id="eye-icon"></i>
+          </button>
+        </div>
+        <span asp-validation-for="Password" class="text-danger" style="font-size:12px;"></span>
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+        <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;font-weight:500;">
+          <input asp-for="RememberMe" type="checkbox" style="width:15px;height:15px;accent-color:var(--accent);"/>
+          Keep me signed in
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;font-size:15px;">
+        <i class="bi bi-box-arrow-in-right"></i> Sign In
+      </button>
+    </form>
+
+    <p style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:24px;">
+      HRMS Portal &mdash; Phase 1 &bull; Acme Corporation Pvt. Ltd.
+    </p>
+  </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/site.js"></script>
+<script>
+function togglePass() {
+  var p = document.getElementById('Password');
+  var i = document.getElementById('eye-icon');
+  if (p.type === 'password') { p.type = 'text'; i.className = 'bi bi-eye-slash'; }
+  else                        { p.type = 'password'; i.className = 'bi bi-eye'; }
+}
+</script>
+</body>
+</html>

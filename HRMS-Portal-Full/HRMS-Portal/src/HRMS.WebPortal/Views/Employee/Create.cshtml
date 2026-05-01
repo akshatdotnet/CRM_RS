@@ -1,0 +1,156 @@
+@model HRMS.WebPortal.Models.Employee.CreateEmployeeViewModel
+@{ ViewData["Title"] = "Add Employee"; ViewData["ActiveNav"] = "EmployeeCreate"; ViewData["PageTitle"] = "Add New Employee"; }
+
+<div class="page-header">
+  <div>
+    <h1>Add New Employee</h1>
+    <p>Creates employee record and user account simultaneously.</p>
+  </div>
+  <a href="/Employee" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to Employees</a>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage)) {
+  <div class="alert alert-error"><i class="bi bi-exclamation-triangle-fill"></i> @Model.ErrorMessage</div>
+}
+
+<form asp-action="Create" method="post">
+  @Html.AntiForgeryToken()
+
+  <!-- Personal Info -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header"><span class="card-title"><i class="bi bi-person" style="color:var(--accent)"></i> Personal Information</span></div>
+    <div class="card-body">
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label asp-for="FirstName">First Name *</label>
+          <input asp-for="FirstName" class="form-control" placeholder="Rahul"/>
+          <span asp-validation-for="FirstName" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="LastName">Last Name *</label>
+          <input asp-for="LastName" class="form-control" placeholder="Verma"/>
+          <span asp-validation-for="LastName" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="Email">Email Address *</label>
+          <input asp-for="Email" type="email" class="form-control" placeholder="rahul.verma@acmecorp.in"/>
+          <span asp-validation-for="Email" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="Phone">Phone Number *</label>
+          <input asp-for="Phone" class="form-control" placeholder="+91-9123456789"/>
+          <span asp-validation-for="Phone" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="Gender">Gender *</label>
+          <select asp-for="Gender" asp-items="Html.GetEnumSelectList<HRMS.Domain.Enums.Gender>()" class="form-control">
+            <option value="">Select gender</option>
+          </select>
+          <span asp-validation-for="Gender" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="DateOfBirth">Date of Birth *</label>
+          <input asp-for="DateOfBirth" type="date" class="form-control"/>
+          <span asp-validation-for="DateOfBirth" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="PanNumber">PAN Number (India)</label>
+          <input asp-for="PanNumber" class="form-control mono" placeholder="ABCDE1234F" style="text-transform:uppercase;"/>
+        </div>
+        <div class="form-group">
+          <label asp-for="RoleToAssign">Portal Role *</label>
+          <select asp-for="RoleToAssign" asp-items="Html.GetEnumSelectList<HRMS.Domain.Enums.UserRole>()" class="form-control"></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label asp-for="Address">Address</label>
+        <textarea asp-for="Address" class="form-control" rows="2" placeholder="Full residential address..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Employment Info -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header"><span class="card-title"><i class="bi bi-briefcase" style="color:var(--accent)"></i> Employment Details</span></div>
+    <div class="card-body">
+      <div class="form-grid-3">
+        <div class="form-group">
+          <label asp-for="Department">Department *</label>
+          <select asp-for="Department" asp-items="Html.GetEnumSelectList<HRMS.Domain.Enums.Department>()" class="form-control">
+            <option value="">Select department</option>
+          </select>
+          <span asp-validation-for="Department" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="Designation">Designation *</label>
+          <input asp-for="Designation" class="form-control" placeholder="Senior Software Engineer"/>
+          <span asp-validation-for="Designation" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="JoiningDate">Date of Joining *</label>
+          <input asp-for="JoiningDate" type="date" class="form-control"/>
+          <span asp-validation-for="JoiningDate" class="text-danger" style="font-size:12px;"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Salary Structure with Live Preview -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-header"><span class="card-title"><i class="bi bi-cash-stack" style="color:var(--accent)"></i> Salary Structure</span></div>
+    <div class="card-body">
+      <div class="form-grid-3">
+        <div class="form-group">
+          <label asp-for="GrossMonthly">Gross Monthly CTC (Rs.) *</label>
+          <input asp-for="GrossMonthly" id="GrossMonthly" type="number" step="1000" min="1000" class="form-control" placeholder="60000"/>
+          <span asp-validation-for="GrossMonthly" class="text-danger" style="font-size:12px;"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="BasicPercent">Basic % of Gross</label>
+          <input asp-for="BasicPercent" id="BasicPercent" type="number" step="1" min="1" max="100" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label asp-for="HRAPercent">HRA % of Gross</label>
+          <input asp-for="HRAPercent" id="HRAPercent" type="number" step="1" min="0" max="100" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label asp-for="SpecialAllowancePercent">Special Allowance % of Gross</label>
+          <input asp-for="SpecialAllowancePercent" id="SpecialAllowancePercent" type="number" step="1" min="0" max="100" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label asp-for="ProfessionalTax">Professional Tax (Rs./month)</label>
+          <input asp-for="ProfessionalTax" id="ProfessionalTax" type="number" step="50" min="0" class="form-control"/>
+        </div>
+      </div>
+
+      <!-- Live Salary Preview -->
+      <div class="salary-preview">
+        <div class="salary-preview-title"><i class="bi bi-calculator"></i> Live Salary Breakdown Preview</div>
+        <div class="salary-preview-grid">
+          <div class="sp-item"><div class="sp-label">Basic Salary</div><div class="sp-value" id="prev-basic">—</div></div>
+          <div class="sp-item"><div class="sp-label">HRA</div><div class="sp-value" id="prev-hra">—</div></div>
+          <div class="sp-item"><div class="sp-label">Special Allowance</div><div class="sp-value" id="prev-spl">—</div></div>
+          <div class="sp-item"><div class="sp-label">Employee PF (12%)</div><div class="sp-value" id="prev-pf">—</div></div>
+          <div class="sp-item"><div class="sp-label">Professional Tax</div><div class="sp-value" id="prev-pt">—</div></div>
+          <div class="sp-item"><div class="sp-label">Net Take-Home</div><div class="sp-value green" id="prev-net">—</div></div>
+          <div class="sp-item" style="grid-column:span 2;"><div class="sp-label">Annual CTC (incl. employer PF)</div><div class="sp-value accent" id="prev-ctc">—</div></div>
+        </div>
+      </div>
+
+      <p style="font-size:12px;color:var(--text-muted);margin-top:10px;">
+        <i class="bi bi-info-circle"></i> Default password for new employee: <span class="mono" style="font-weight:700;">Welcome@123</span>
+      </p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px;">
+    <button type="submit" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i> Create Employee &amp; User Account</button>
+    <a href="/Employee" class="btn btn-secondary">Cancel</a>
+  </div>
+</form>
+
+@section Scripts {
+  <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+  <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+  <script src="~/js/site.js"></script>
+}

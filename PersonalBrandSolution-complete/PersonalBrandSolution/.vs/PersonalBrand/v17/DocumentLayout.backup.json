@@ -1,41 +1,41 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\",
+  "WorkspaceRootPath": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|solutionrelative:personalbrand.mvc\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|solutionrelative:personalbrand.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6574F242-98E4-4D88-A8D9-C6D591910208}|PersonalBrand.Tests\\PersonalBrand.Tests.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.tests\\test_results.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "AbsoluteMoniker": "D:0:0:{6574F242-98E4-4D88-A8D9-C6D591910208}|PersonalBrand.Tests\\PersonalBrand.Tests.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.tests\\test_results.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{6574F242-98E4-4D88-A8D9-C6D591910208}|PersonalBrand.Tests\\PersonalBrand.Tests.csproj|solutionrelative:personalbrand.tests\\test_results.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|solutionrelative:personalbrand.mvc\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|PersonalBrand.API\\PersonalBrand.API.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|PersonalBrand.API\\PersonalBrand.API.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|PersonalBrand.API\\PersonalBrand.API.csproj|solutionrelative:personalbrand.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|solutionrelative:personalbrand.mvc\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\services\\personalbrandapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\services\\personalbrandapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|solutionrelative:personalbrand.mvc\\services\\personalbrandapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\logs\\mvc-20260421.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "AbsoluteMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.mvc\\logs\\mvc-20260421.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{B2C3D4E5-F6A7-8901-BCDE-F12345678901}|PersonalBrand.MVC\\PersonalBrand.MVC.csproj|solutionrelative:personalbrand.mvc\\logs\\mvc-20260421.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|PersonalBrand.API\\PersonalBrand.API.csproj|d:\\client_project\\temp\\files\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.api\\controllers\\controllers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|PersonalBrand.API\\PersonalBrand.API.csproj|d:\\client_project\\crm_rs\\personalbrandsolution-complete\\personalbrandsolution\\personalbrand.api\\controllers\\controllers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A1B2C3D4-E5F6-7890-ABCD-EF1234567890}|PersonalBrand.API\\PersonalBrand.API.csproj|solutionrelative:personalbrand.api\\controllers\\controllers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -52,22 +52,21 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "TEST_RESULTS.md",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Tests\\TEST_RESULTS.md",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Tests\\TEST_RESULTS.md",
               "RelativeDocumentMoniker": "PersonalBrand.Tests\\TEST_RESULTS.md",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Tests\\TEST_RESULTS.md",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.Tests\\TEST_RESULTS.md",
               "RelativeToolTip": "PersonalBrand.Tests\\TEST_RESULTS.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-04-26T09:05:37.586Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T09:05:37.586Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "PersonalBrandApiClient.cs",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Services\\PersonalBrandApiClient.cs",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Services\\PersonalBrandApiClient.cs",
               "RelativeDocumentMoniker": "PersonalBrand.MVC\\Services\\PersonalBrandApiClient.cs",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Services\\PersonalBrandApiClient.cs",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Services\\PersonalBrandApiClient.cs",
               "RelativeToolTip": "PersonalBrand.MVC\\Services\\PersonalBrandApiClient.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -77,22 +76,21 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Controllers\\HomeController.cs",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "PersonalBrand.MVC\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Controllers\\HomeController.cs",
               "RelativeToolTip": "PersonalBrand.MVC\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T11:50:28.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T11:50:28.388Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\appsettings.json",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\appsettings.json",
               "RelativeDocumentMoniker": "PersonalBrand.MVC\\appsettings.json",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\appsettings.json",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\appsettings.json",
               "RelativeToolTip": "PersonalBrand.MVC\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -103,22 +101,21 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Program.cs",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Program.cs",
               "RelativeDocumentMoniker": "PersonalBrand.MVC\\Program.cs",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Program.cs",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Program.cs",
               "RelativeToolTip": "PersonalBrand.MVC\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T11:50:11.641Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T11:50:11.641Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Properties\\launchSettings.json",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "PersonalBrand.API\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Properties\\launchSettings.json",
               "RelativeToolTip": "PersonalBrand.API\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -128,9 +125,9 @@
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "mvc-20260421.txt",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\logs\\mvc-20260421.txt",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\logs\\mvc-20260421.txt",
               "RelativeDocumentMoniker": "PersonalBrand.MVC\\logs\\mvc-20260421.txt",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\logs\\mvc-20260421.txt",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\logs\\mvc-20260421.txt",
               "RelativeToolTip": "PersonalBrand.MVC\\logs\\mvc-20260421.txt",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
@@ -140,9 +137,9 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "launchSettings.json",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Properties\\launchSettings.json",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "PersonalBrand.MVC\\Properties\\launchSettings.json",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.MVC\\Properties\\launchSettings.json",
               "RelativeToolTip": "PersonalBrand.MVC\\Properties\\launchSettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
@@ -152,9 +149,9 @@
               "$type": "Document",
               "DocumentIndex": 8,
               "Title": "Controllers.cs",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Controllers\\Controllers.cs",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Controllers\\Controllers.cs",
               "RelativeDocumentMoniker": "PersonalBrand.API\\Controllers\\Controllers.cs",
-              "ToolTip": "D:\\Client_Project\\Temp\\files\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Controllers\\Controllers.cs",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\PersonalBrandSolution-complete\\PersonalBrandSolution\\PersonalBrand.API\\Controllers\\Controllers.cs",
               "RelativeToolTip": "PersonalBrand.API\\Controllers\\Controllers.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

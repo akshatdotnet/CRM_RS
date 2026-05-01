@@ -1,29 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\",
+  "WorkspaceRootPath": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|d:\\client_project\\temp\\realestatecrm_v4_withauth\\realestatecrm\\crm.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|d:\\client_project\\crm_rs\\realestatecrm\\crm.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|solutionrelative:crm.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|d:\\client_project\\temp\\realestatecrm_v4_withauth\\realestatecrm\\crm.infrastructure\\data\\crmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|solutionrelative:crm.infrastructure\\data\\crmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|d:\\client_project\\crm_rs\\realestatecrm\\crm.web\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|solutionrelative:crm.web\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|d:\\client_project\\temp\\realestatecrm_v4_withauth\\realestatecrm\\crm.infrastructure\\crm.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|solutionrelative:crm.infrastructure\\crm.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{22222222-2222-2222-2222-222222222222}|CRM.API\\CRM.API.csproj|d:\\client_project\\temp\\realestatecrm_v4_withauth\\realestatecrm\\crm.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{22222222-2222-2222-2222-222222222222}|CRM.API\\CRM.API.csproj|solutionrelative:crm.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|d:\\client_project\\temp\\realestatecrm_v4_withauth\\realestatecrm\\crm.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|d:\\client_project\\crm_rs\\realestatecrm\\crm.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{11111111-1111-1111-1111-111111111111}|CRM.Web\\CRM.Web.csproj|solutionrelative:crm.web\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|d:\\client_project\\temp\\realestatecrm_v4_withauth\\realestatecrm\\crm.infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|d:\\client_project\\crm_rs\\realestatecrm\\crm.infrastructure\\data\\crmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|solutionrelative:crm.infrastructure\\data\\crmdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|d:\\client_project\\crm_rs\\realestatecrm\\crm.infrastructure\\crm.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|solutionrelative:crm.infrastructure\\crm.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{22222222-2222-2222-2222-222222222222}|CRM.API\\CRM.API.csproj|d:\\client_project\\crm_rs\\realestatecrm\\crm.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{22222222-2222-2222-2222-222222222222}|CRM.API\\CRM.API.csproj|solutionrelative:crm.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|d:\\client_project\\crm_rs\\realestatecrm\\crm.infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{44444444-4444-4444-4444-444444444444}|CRM.Infrastructure\\CRM.Infrastructure.csproj|solutionrelative:crm.infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,28 +38,40 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CRM.Infrastructure",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "CRM.Web\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\Properties\\launchSettings.json",
+              "RelativeToolTip": "CRM.Web\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-28T11:47:26.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CRM.Infrastructure.csproj",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj",
               "RelativeDocumentMoniker": "CRM.Infrastructure\\CRM.Infrastructure.csproj",
-              "ToolTip": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\CRM.Infrastructure.csproj",
               "RelativeToolTip": "CRM.Infrastructure\\CRM.Infrastructure.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-04-25T17:09:26.266Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-25T17:09:26.266Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\Program.cs",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\Program.cs",
               "RelativeDocumentMoniker": "CRM.Web\\Program.cs",
-              "ToolTip": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\Program.cs",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\Program.cs",
               "RelativeToolTip": "CRM.Web\\Program.cs",
               "ViewState": "AgIAADoAAAAAAAAAAAAAAEMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -64,50 +80,48 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.API\\appsettings.json",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.API\\appsettings.json",
               "RelativeDocumentMoniker": "CRM.API\\appsettings.json",
-              "ToolTip": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.API\\appsettings.json",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.API\\appsettings.json",
               "RelativeToolTip": "CRM.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-21T08:47:55.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T08:47:55.215Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\appsettings.json",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\appsettings.json",
               "RelativeDocumentMoniker": "CRM.Web\\appsettings.json",
-              "ToolTip": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Web\\appsettings.json",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Web\\appsettings.json",
               "RelativeToolTip": "CRM.Web\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-04-21T08:46:54.6Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "CrmDbContext.cs",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\Data\\CrmDbContext.cs",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\Data\\CrmDbContext.cs",
               "RelativeDocumentMoniker": "CRM.Infrastructure\\Data\\CrmDbContext.cs",
-              "ToolTip": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\Data\\CrmDbContext.cs",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\Data\\CrmDbContext.cs",
               "RelativeToolTip": "CRM.Infrastructure\\Data\\CrmDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T08:46:45.279Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T08:46:45.279Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "EmailService.cs",
-              "DocumentMoniker": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\Services\\EmailService.cs",
+              "DocumentMoniker": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\Services\\EmailService.cs",
               "RelativeDocumentMoniker": "CRM.Infrastructure\\Services\\EmailService.cs",
-              "ToolTip": "D:\\Client_Project\\Temp\\RealEstateCRM_v4_WithAuth\\RealEstateCRM\\CRM.Infrastructure\\Services\\EmailService.cs",
+              "ToolTip": "D:\\Client_Project\\CRM_RS\\RealEstateCRM\\CRM.Infrastructure\\Services\\EmailService.cs",
               "RelativeToolTip": "CRM.Infrastructure\\Services\\EmailService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

@@ -1,0 +1,52 @@
+@model HRMS.WebPortal.Models.Document.DocumentListViewModel
+@{ ViewData["Title"] = "Documents"; ViewData["ActiveNav"] = "Document"; ViewData["PageTitle"] = "Documents"; }
+<div class="page-header">
+  <div><h1>Documents</h1><p>For: <strong>@Model.EmployeeName</strong></p></div>
+  <a href="/Employee" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Back to Employees</a>
+</div>
+<div class="card" style="margin-bottom:20px;">
+  <div class="card-header"><span class="card-title"><i class="bi bi-plus-circle" style="color:var(--accent)"></i> Generate Document</span></div>
+  <div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap;">
+    <a href="/Document/GenerateOffer?employeeId=@Model.EmployeeId" class="btn btn-secondary"><i class="bi bi-file-earmark-person"></i> Offer Letter</a>
+        <a href="/Document/GenerateAppointment?employeeId=@Model.EmployeeId&employeeName=@Uri.EscapeDataString(Model.EmployeeName ?? "")"
+       class="btn btn-secondary" onclick="return confirm('Generate Appointment Letter?')">
+       <i class="bi bi-file-earmark-check"></i> Appointment Letter
+    </a>
+        <a href="/Document/GenerateExperience?employeeId=@Model.EmployeeId&employeeName=@Uri.EscapeDataString(Model.EmployeeName ?? "")"
+       class="btn btn-secondary" onclick="return confirm('Employee must be on notice or separated.')">
+       <i class="bi bi-file-earmark-text"></i> Experience Letter
+    </a>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header"><span class="card-title"><i class="bi bi-folder2-open" style="color:var(--accent)"></i> Generated Documents</span></div>
+  @if (!Model.Documents.Any()) {
+    <div class="empty-state"><i class="bi bi-file-earmark-x"></i><h3>No documents yet</h3><p>Use the buttons above to generate documents.</p></div>
+  } else {
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Type</th><th>Status</th><th>Generated</th><th>Email</th><th style="text-align:right">Actions</th></tr></thead>
+        <tbody>
+          @foreach (var d in Model.Documents) {
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:8px;"><i class="bi bi-file-earmark" style="color:var(--accent);font-size:16px;"></i><span style="font-weight:600;">@d.Type</span></div></td>
+              <td><span class="badge badge-generated">@d.Status</span></td>
+              <td style="font-size:13px;color:var(--text-muted);">@(d.GeneratedAt.HasValue ? d.GeneratedAt.Value.ToString("dd MMM yyyy HH:mm") : "—")</td>
+              <td><span class="badge @(d.EmailStatus == "Sent" ? "badge-sent" : d.EmailStatus == "Failed" ? "badge-failed" : "badge-pending")">@d.EmailStatus</span></td>
+              <td>
+                <div class="action-row" style="justify-content:flex-end;">
+                  <a href="/Document/Download/@d.Id" class="btn btn-secondary btn-sm btn-icon" title="Download PDF"><i class="bi bi-download"></i></a>
+                  @if (d.EmailStatus != "Sent") {
+                    <a href="/Document/Send/@d.Id?employeeId=@Model.EmployeeId&employeeName=@Uri.EscapeDataString(Model.EmployeeName)"
+                       class="btn btn-success btn-sm btn-icon" title="Email to Employee"
+                       onclick="return confirm('Send this document to employee?')"><i class="bi bi-envelope"></i></a>
+                  }
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

@@ -282,8 +282,8 @@ D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Web\obj\Debug
 D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Web\obj\Debug\net8.0\CRM.Web.genruntimeconfig.cache
 D:\Client_Project\Temp\RealEstateCRM_v4_WithAuth\RealEstateCRM\CRM.Web\obj\Debug\net8.0\ref\CRM.Web.dll
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\bin\Debug\net8.0\appsettings.json
-D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\bin\Debug\net8.0\CRM.Web.staticwebassets.endpoints.json
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\bin\Debug\net8.0\CRM.Web.staticwebassets.runtime.json
+D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\bin\Debug\net8.0\CRM.Web.staticwebassets.endpoints.json
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\bin\Debug\net8.0\CRM.Web.exe
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\bin\Debug\net8.0\CRM.Web.deps.json
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\bin\Debug\net8.0\CRM.Web.runtimeconfig.json
@@ -423,3 +423,4 @@ D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\obj\Debug\net8.0\refint\CRM.Web.d
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\obj\Debug\net8.0\CRM.Web.pdb
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\obj\Debug\net8.0\CRM.Web.genruntimeconfig.cache
 D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\obj\Debug\net8.0\ref\CRM.Web.dll
+D:\Client_Project\CRM_RS\RealEstateCRM\CRM.Web\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

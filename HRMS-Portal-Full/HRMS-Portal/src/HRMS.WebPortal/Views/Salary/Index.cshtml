@@ -1,0 +1,65 @@
+@model HRMS.WebPortal.Models.Salary.SalarySlipListViewModel
+@{ ViewData["Title"] = "Salary Slips"; ViewData["ActiveNav"] = "Salary"; ViewData["PageTitle"] = "Salary Slips"; }
+
+<div class="page-header">
+  <div>
+    <h1>Salary Slips</h1>
+    @if (Model.EmployeeId.HasValue) {
+      <p>For: <strong>@Model.EmployeeName</strong> &mdash; <a href="/Employee" style="font-size:13px;">Change employee</a></p>
+    } else {
+      <p>Select an employee to view their salary slips.</p>
+    }
+  </div>
+  @if ((User.IsInRole("Admin") || User.IsInRole("HR")) && Model.EmployeeId.HasValue) {
+    <a href="/Salary/Generate?employeeId=@Model.EmployeeId&employeeName=@Uri.EscapeDataString(Model.EmployeeName ?? "")" class="btn btn-primary">
+      <i class="bi bi-plus-circle-fill"></i> Generate Slip
+    </a>
+  }
+</div>
+
+@if (!Model.EmployeeId.HasValue) {
+  <div class="card">
+    <div class="card-body">
+      <p style="color:var(--text-muted)">Please go to <a href="/Employee">Employees</a> and click the salary icon next to an employee.</p>
+    </div>
+  </div>
+} else {
+  <div class="card">
+    @if (!Model.Slips.Any()) {
+      <div class="empty-state">
+        <i class="bi bi-receipt"></i>
+        <h3>No salary slips yet</h3>
+        <p>Generate the first slip using the button above.</p>
+      </div>
+    } else {
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Month / Year</th><th>Gross Earnings</th><th>Deductions</th><th>Net Pay</th><th>Email Status</th><th style="text-align:right">Actions</th></tr></thead>
+          <tbody>
+            @foreach (var s in Model.Slips) {
+              <tr>
+                <td style="font-weight:600;">@s.MonthYear</td>
+                <td class="mono">₹ @s.GrossEarnings.ToString("N2")</td>
+                <td class="mono" style="color:var(--red)">₹ @s.TotalDeductions.ToString("N2")</td>
+                <td class="mono" style="color:var(--green);font-weight:700;">₹ @s.NetPay.ToString("N2")</td>
+                <td><span class="badge @(s.IsSent ? "badge-sent" : "badge-pending")">@(s.IsSent ? "Sent" : "Not Sent")</span></td>
+                <td>
+                  <div class="action-row" style="justify-content:flex-end;">
+                    <a href="/Salary/Download/@s.Id" class="btn btn-secondary btn-sm btn-icon" title="Download PDF"><i class="bi bi-download"></i></a>
+                    @if ((User.IsInRole("Admin") || User.IsInRole("HR")) && !s.IsSent) {
+                      <a href="/Salary/Send/@s.Id?employeeId=@Model.EmployeeId&employeeName=@Uri.EscapeDataString(Model.EmployeeName ?? "")"
+                         class="btn btn-success btn-sm btn-icon" title="Email to Employee"
+                         onclick="return confirm('Send salary slip for @s.MonthYear to employee?')">
+                         <i class="bi bi-envelope"></i>
+                      </a>
+                    }
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+}
