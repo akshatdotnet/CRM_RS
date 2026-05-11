@@ -1,36 +1,95 @@
+# =========================
 # Build folders
+# =========================
 bin/
 obj/
+out/
+dist/
 
+# =========================
 # Visual Studio
+# =========================
 .vs/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
 
+# =========================
 # Rider / VS Code
+# =========================
 .idea/
 .vscode/
 
+# =========================
+# Node / Angular
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Angular cache
+.angular/
+.cache/
+
+# =========================
 # Logs
+# =========================
 *.log
 
+# =========================
 # OS files
+# =========================
 .DS_Store
 Thumbs.db
 
+# =========================
 # Test results
+# =========================
 TestResults/
+coverage/
 
+# =========================
 # NuGet
+# =========================
 *.nupkg
 packages/
 .nuget/
 
+# =========================
 # Publish output
+# =========================
 publish/
 
-# Others
+# =========================
+# Temporary files
+# =========================
 *.cache
 *.tmp
+*.temp
+
+# =========================
+# Entity Framework
+# =========================
+*.dbmdl
+*.jfm
+
+# =========================
+# SQLite
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# Environment files
+# =========================
+.env
+.env.*
+
+# =========================
+# Generated files
+# =========================
+Generated/
+wwwroot/lib/
